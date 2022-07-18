@@ -9,6 +9,11 @@ public class UsersController : ControllerBase
     public UsersController(RumbleDbContext context)
         => _context = context;
 
+    /// <summary>
+    /// Returns all the users in the database
+    /// </summary>
+    /// <returns></returns>
+
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<UserEntity>> GetUsers()
@@ -16,6 +21,11 @@ public class UsersController : ControllerBase
         return Ok(await _context.Users.ToListAsync());
     }
 
+    /// <summary>
+    /// Returns a particular user with the given id
+    /// </summary>
+    /// <param name="id">Id must be passed as a Route in the API</param>
+    /// <returns></returns>
     [HttpGet("{id}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]

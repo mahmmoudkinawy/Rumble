@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>API</name>
+    </assembly>
+    <members>
+        <member name="M:API.Controllers.UsersController.GetUsers">
+            <summary>
+            Returns all the users in the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:API.Controllers.UsersController.GetUser(System.Int32)">
+            <summary>
+            Returns a particular user with the given id
+            </summary>
+            <param name="id">Id must be passed as a Route in the API</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
