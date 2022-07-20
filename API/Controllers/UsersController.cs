@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿namespace API.Controllers;
 
-namespace API.Controllers;
-
+/// <summary>
+/// Users Controller for getting users details
+/// </summary>
 [ApiController]
 [Route("api/users")]
 public class UsersController : ControllerBase

@@ -2,6 +2,9 @@
 
 namespace API.Controllers;
 
+/// <summary>
+/// Account Controller for Authentication the users
+/// </summary>
 [Route("api/account")]
 [ApiController]
 public class AccountController : ControllerBase
@@ -15,7 +18,16 @@ public class AccountController : ControllerBase
         _tokenService = tokenService;
     }
 
+    /// <summary>
+    /// Register endpoint for registering a new user with new email
+    /// </summary>
+    /// <param name="registerDto"></param>
+    /// <returns>Returns User Dto that returns token and username</returns>
+
     [HttpPost("register")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
@@ -39,8 +51,15 @@ public class AccountController : ControllerBase
         });
     }
 
-
+    /// <summary>
+    /// Login endpoint for log the user in with username and password
+    /// </summary>
+    /// <param name="registerDto"></param>
+    /// <returns>Returns User Dto that returns token and username</returns>
     [HttpPost("login")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
         var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == loginDto.Username);

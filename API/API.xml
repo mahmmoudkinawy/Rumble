@@ -4,6 +4,30 @@
         <name>API</name>
     </assembly>
     <members>
+        <member name="T:API.Controllers.AccountController">
+            <summary>
+            Account Controller for Authentication the users
+            </summary>
+        </member>
+        <member name="M:API.Controllers.AccountController.Register(API.DTOs.RegisterDto)">
+            <summary>
+            Register endpoint for registering a new user with new email
+            </summary>
+            <param name="registerDto"></param>
+            <returns>Returns User Dto that returns token and username</returns>
+        </member>
+        <member name="M:API.Controllers.AccountController.Login(API.DTOs.LoginDto)">
+            <summary>
+            Login endpoint for log the user in with username and password
+            </summary>
+            <param name="registerDto"></param>
+            <returns>Returns User Dto that returns token and username</returns>
+        </member>
+        <member name="T:API.Controllers.UsersController">
+            <summary>
+            Users Controller for getting users details
+            </summary>
+        </member>
         <member name="M:API.Controllers.UsersController.GetUsers">
             <summary>
             Returns all the users in the database
@@ -16,6 +40,51 @@
             </summary>
             <param name="id">Id must be passed as a Route in the API</param>
             <returns></returns>
+        </member>
+        <member name="T:API.DTOs.LoginDto">
+            <summary>
+            Model that used by account controller for login users
+            </summary>
+        </member>
+        <member name="P:API.DTOs.LoginDto.Username">
+            <summary>
+            Put Username and it's Required
+            </summary>
+        </member>
+        <member name="P:API.DTOs.LoginDto.Password">
+            <summary>
+            Put Password and it's Required
+            </summary>
+        </member>
+        <member name="T:API.DTOs.RegisterDto">
+            <summary>
+            Model that used by account controller for register users
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.Username">
+            <summary>
+            Put Username and it's Required
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.Password">
+            <summary>
+            Put Password and it's Required
+            </summary>
+        </member>
+        <member name="T:API.DTOs.UserDto">
+            <summary>
+            UserDto is the model the returns from the two end points => register and login for authenticating the users
+            </summary>
+        </member>
+        <member name="P:API.DTOs.UserDto.Token">
+            <summary>
+            Token
+            </summary>
+        </member>
+        <member name="P:API.DTOs.UserDto.Username">
+            <summary>
+            Username as a string
+            </summary>
         </member>
     </members>
 </doc>
