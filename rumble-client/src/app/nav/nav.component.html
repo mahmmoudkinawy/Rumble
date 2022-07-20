@@ -1,0 +1,18 @@
+<header>
+    <nav class="navbar">
+        <ul class="navbar-links">
+            <li><a>Matches</a></li>
+            <li><a>Lists</a></li>
+            <li><a>Messages</a></li>
+        </ul>
+        <form #loginFrom="ngForm" (ngSubmit)="login()">
+            <div class="navbar-form">
+                <input type="text" name="username" [(ngModel)]="model.username" pInputText class="p-inputtext-sm mr-2"
+                    placeholder="Username">
+                <p-password name="password" [(ngModel)]="model.password" placeholder=" Password" [feedback]="false">
+                </p-password>
+                <p-button name label="Login" class="ml-2" iconPos="left" type="submit"></p-button>
+            </div>
+        </form>
+    </nav>
+</header>
