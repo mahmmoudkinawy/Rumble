@@ -8,15 +8,6 @@ public static class ApplicationServiceExtenstions
 
         services.AddControllers().AddXmlSerializerFormatters();
 
-        services.AddEndpointsApiExplorer();
-        services.AddSwaggerGen(setupAction =>
-        {
-            var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlCommentsFullPath = Path.Combine(AppContext.BaseDirectory, xmlCommentsFile);
-
-            setupAction.IncludeXmlComments(xmlCommentsFullPath);
-        });
-
         services.AddDbContext<RumbleDbContext>(options =>
             options.UseNpgsql(config.GetConnectionString("DefaultConnection")));
 
