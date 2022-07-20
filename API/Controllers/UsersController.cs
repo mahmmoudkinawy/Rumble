@@ -1,4 +1,6 @@
-﻿namespace API.Controllers;
+﻿using Microsoft.AspNetCore.Authorization;
+
+namespace API.Controllers;
 
 [ApiController]
 [Route("api/users")]
@@ -15,6 +17,7 @@ public class UsersController : ControllerBase
     /// <returns></returns>
 
     [HttpGet]
+    [Authorize]
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<UserEntity>> GetUsers()
     {
@@ -27,6 +30,7 @@ public class UsersController : ControllerBase
     /// <param name="id">Id must be passed as a Route in the API</param>
     /// <returns></returns>
     [HttpGet("{id}")]
+    [AllowAnonymous]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<UserEntity>> GetUser([FromRoute] int id)

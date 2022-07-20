@@ -6,3 +6,5 @@ global using Serilog;
 global using System.Reflection;
 global using API.Constants;
 global using API.Extensions;
+global using System.ComponentModel.DataAnnotations;
+global using API.Interfaces;
