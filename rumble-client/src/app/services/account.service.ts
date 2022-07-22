@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, ReplaySubject } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
@@ -11,7 +10,7 @@ import { User } from '../models/user';
 })
 export class AccountService {
   private readonly baseUrl = environment.apiUrl;
-  private currentUserSource = new ReplaySubject<User | null>(1);
+  private currentUserSource = new ReplaySubject<User>(1);
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) {}
@@ -34,7 +33,7 @@ export class AccountService {
 
   logout() {
     localStorage.removeItem('user');
-    this.currentUserSource.next(null);
+    this.currentUserSource.next(null!);
   }
 
   setCurrentUser(user: User) {

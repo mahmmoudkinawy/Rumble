@@ -1,14 +1,14 @@
 <mat-toolbar color="primary" class="navbar">
     <div>
         <a routerLink="/">LOGO</a>
-        <ng-container>
+        <ng-container *ngIf="accountService.currentUser$ | async">
             <a routerLink="/members">Matches</a>
             <a routerLink="/lists">Lists</a>
             <a routerLink="/messages">Messages</a>
         </ng-container>
     </div>
 
-    <div *ngIf="loggedIn">
+    <div *ngIf="accountService.currentUser$ | async">
         <mat-form-field appearance="fill">
             <mat-label>Welcome bob</mat-label>
             <mat-select>
@@ -22,7 +22,7 @@
         </mat-form-field>
     </div>
 
-    <div *ngIf="!loggedIn ">
+    <div *ngIf="(accountService.currentUser$ | async) === null">
         <form #loginFrom="ngForm" (submit)="login()" autocomplete="off">
             <mat-form-field class="navbar-form-margin" appearance="fill">
                 <input name="username" [(ngModel)]="model.username" matInput placeholder="Username">
