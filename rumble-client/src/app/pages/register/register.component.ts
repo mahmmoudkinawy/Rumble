@@ -24,8 +24,7 @@ export class RegisterComponent implements OnInit {
   register() {
     this.accountService.register(this.model).subscribe(
       () => {
-        this.snackBar.open('Created Successfully, Please Login', 'Success');
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/members');
       },
       (error) => {
         this.snackBar.open(error.error, 'Error');
