@@ -1,10 +1,10 @@
 <mat-toolbar color="primary" class="navbar">
     <div>
-        <a>LOGO</a>
-        <ng-container *ngIf="loggedIn">
-            <a>Matches</a>
-            <a>Lists</a>
-            <a>Messages</a>
+        <a routerLink="/">LOGO</a>
+        <ng-container>
+            <a routerLink="/members">Matches</a>
+            <a routerLink="/lists">Lists</a>
+            <a routerLink="/messages">Messages</a>
         </ng-container>
     </div>
 
