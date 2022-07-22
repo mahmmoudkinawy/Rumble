@@ -10,13 +10,26 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from './shared/material.module';
 import { HomeComponent } from './pages/home/home.component';
 import { RegisterComponent } from './pages/register/register.component';
+import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
+import { MemberListComponent } from './pages/members/member-list/member-list.component';
+import { MessagesComponent } from './pages/messages/messages.component';
+import { ListsComponent } from './pages/lists/lists.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    RegisterComponent,
+    MemberDetailComponent,
+    MemberListComponent,
+    MessagesComponent,
+    ListsComponent,
+  ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
     MaterialModule,
     FormsModule,
     HttpClientModule,
