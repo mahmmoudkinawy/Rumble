@@ -1,0 +1,36 @@
+<mat-toolbar color="primary" class="navbar">
+    <div>
+        <a>LOGO</a>
+        <ng-container *ngIf="loggedIn">
+            <a>Matches</a>
+            <a>Lists</a>
+            <a>Messages</a>
+        </ng-container>
+    </div>
+
+    <div *ngIf="loggedIn">
+        <mat-form-field appearance="fill">
+            <mat-label>Welcome bob</mat-label>
+            <mat-select>
+                <mat-option>
+                    Profile
+                </mat-option>
+                <mat-option (click)="logout()">
+                    Logout
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <div *ngIf="!loggedIn ">
+        <form #loginFrom="ngForm" (submit)="login()" autocomplete="off">
+            <mat-form-field class="navbar-form-margin" appearance="fill">
+                <input name="username" [(ngModel)]="model.username" matInput placeholder="Username">
+            </mat-form-field>
+            <mat-form-field class="navbar-form-margin" appearance="fill">
+                <input name="password" [(ngModel)]="model.password" type="password" matInput placeholder="Password">
+            </mat-form-field>
+            <button mat-raised-button class="navbar-form-margin">Basic</button>
+        </form>
+    </div>
+</mat-toolbar>

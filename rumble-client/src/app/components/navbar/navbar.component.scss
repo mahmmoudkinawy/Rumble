@@ -1,0 +1,19 @@
+::ng-deep .mat-input-element::placeholder {
+  color: white;
+}
+
+// ::ng-deep.mat-form-field-label-wrapper {
+//   background-color: green !important;
+// }
+
+.navbar {
+  justify-content: space-between;
+
+  a {
+    padding-right: 1rem;
+  }
+
+  &-form-margin {
+    padding-right: 1rem;
+  }
+}

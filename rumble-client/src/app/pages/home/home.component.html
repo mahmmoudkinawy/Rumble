@@ -1,0 +1,12 @@
+<div>
+    <section *ngIf="!registerMode">
+        <h1>Make a friends from everywhere</h1>
+        <div class="example-button-row" style="margin: 1.5rem;">
+            <button (click)="registerToggle()" mat-raised-button color="primary">Register</button>
+            <button mat-raised-button>Learn More</button>
+        </div>
+    </section>
+    <section *ngIf="registerMode">
+        <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+    </section>
+</div>
