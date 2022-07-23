@@ -1,0 +1,21 @@
+section {
+  padding: 150px;
+
+  button {
+    margin-top: 50px;
+  }
+
+  div:nth-child(2) {
+    width: 100%;
+  }
+
+  div:nth-child(1) {
+    margin-top: 20px;
+  }
+
+  div:nth-child(3),
+  div:nth-child(1) {
+    color: #673ab7;
+    font-size: 50px;
+  }
+}

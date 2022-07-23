@@ -8,6 +8,8 @@ import { ListsComponent } from './pages/lists/lists.component';
 import { MemberDetailComponent } from './pages/members/member-detail/member-detail.component';
 import { MemberListComponent } from './pages/members/member-list/member-list.component';
 import { MessagesComponent } from './pages/messages/messages.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,8 +27,9 @@ const routes: Routes = [
       { path: 'messages', component: MessagesComponent },
     ],
   },
-
-  { path: '**', component: HomeComponent, pathMatch: 'full' },
+  { path: 'errors', component: TestErrorsComponent },
+  { path: 'not-found', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

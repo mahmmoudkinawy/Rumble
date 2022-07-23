@@ -14,6 +14,8 @@ import { MemberDetailComponent } from './pages/members/member-detail/member-deta
 import { MemberListComponent } from './pages/members/member-list/member-list.component';
 import { MessagesComponent } from './pages/messages/messages.component';
 import { ListsComponent } from './pages/lists/lists.component';
+import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { ListsComponent } from './pages/lists/lists.component';
     MemberListComponent,
     MessagesComponent,
     ListsComponent,
+    TestErrorsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
