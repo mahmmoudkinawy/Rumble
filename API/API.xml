@@ -23,6 +23,36 @@
             <param name="registerDto"></param>
             <returns>Returns User Dto that returns token and username</returns>
         </member>
+        <member name="T:API.Controllers.BugsController">
+            <summary>
+            That Controller is not a part of Producation! 
+            That's just for testing purposes
+            </summary>
+        </member>
+        <member name="M:API.Controllers.BugsController.GetSecret">
+            <summary>
+            Try's to access authorized information
+            </summary>
+            <returns>will always return 401</returns>
+        </member>
+        <member name="M:API.Controllers.BugsController.GetNotFound">
+            <summary>
+            Try's get not found entity
+            </summary>
+            <returns>will always return 404</returns>
+        </member>
+        <member name="M:API.Controllers.BugsController.GetBadRequest">
+            <summary>
+            Get a Bad Request
+            </summary>
+            <returns>will always return 400</returns>
+        </member>
+        <member name="M:API.Controllers.BugsController.GetServerError">
+            <summary>
+            Will get server error
+            </summary>
+            <returns>will always return 500</returns>
+        </member>
         <member name="T:API.Controllers.UsersController">
             <summary>
             Users Controller for getting users details
@@ -69,6 +99,7 @@
         <member name="P:API.DTOs.RegisterDto.Password">
             <summary>
             Put Password and it's Required
+            Password Max Length is 8 and Minimum is 4, will be changed in the future 
             </summary>
         </member>
         <member name="T:API.DTOs.UserDto">

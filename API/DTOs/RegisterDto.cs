@@ -12,8 +12,10 @@ public class RegisterDto
     public string Username { get; set; }
 
     /// <summary>
-    /// Put Password and it's Required
+    /// Put Password that's Required and
+    /// Password Max Length is 8 and Minimum is 4, will be changed in the future 
     /// </summary>
     [Required]
+    [StringLength(8, MinimumLength = 4)]
     public string Password { get; set; }
 }
