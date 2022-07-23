@@ -98,7 +98,7 @@
         </member>
         <member name="P:API.DTOs.RegisterDto.Password">
             <summary>
-            Put Password and it's Required
+            Put Password that's Required and
             Password Max Length is 8 and Minimum is 4, will be changed in the future 
             </summary>
         </member>
