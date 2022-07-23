@@ -10,6 +10,7 @@ import { MemberListComponent } from './pages/members/member-list/member-list.com
 import { MessagesComponent } from './pages/messages/messages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
+import { ServerErrorComponent } from './errors/server-error/server-error.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
     ],
   },
   { path: 'errors', component: TestErrorsComponent },
+  { path: 'server-error', component: ServerErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent },
 ];

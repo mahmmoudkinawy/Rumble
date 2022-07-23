@@ -1,0 +1,14 @@
+<section style="margin-top: 5rem;">
+    <div fxFlex>
+        <p>Internal Server Error</p>
+        <p>We are sorry for the inconvenience, please report this error.</p>
+    </div>
+    <div fxFlex>
+        <mat-checkbox (change)="checkChanged($event)" color="primary">I want to report this error.</mat-checkbox>
+        <ng-container *ngIf="reportedError">
+            <mat-progress-spinner style="margin:0 auto;" mode="determinate" [value]="errorPercentage">
+            </mat-progress-spinner>
+            <h1>{{errorPercentage}}%</h1>
+        </ng-container>
+    </div>
+</section>
