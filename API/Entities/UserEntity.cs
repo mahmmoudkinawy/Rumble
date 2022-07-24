@@ -17,8 +17,4 @@ public class UserEntity
     public string Country { get; set; }
     public ICollection<PhotoEntity> Photos { get; set; }
 
-    public int GetAge()
-    {
-        return DateOfBirth.CalculateAge();
-    }
 }

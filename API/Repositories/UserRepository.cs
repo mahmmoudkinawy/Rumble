@@ -2,10 +2,26 @@
 public class UserRepository : IUserRepository
 {
     private readonly RumbleDbContext _context;
+    private readonly IMapper _mapper;
 
-    public UserRepository(RumbleDbContext context)
+    public UserRepository(RumbleDbContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
+    }
+
+    public async Task<MemberDto> GetMemberByUsernameAsync(string username)
+    {
+        return await _context.Users
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(u => u.Username.Equals(username));
+    }
+
+    public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+    {
+        return await _context.Users
+            .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .ToListAsync();
     }
 
     public async Task<UserEntity> GetUserByIdAsync(int id)

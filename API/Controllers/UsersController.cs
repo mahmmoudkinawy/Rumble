@@ -24,7 +24,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MemberDto>> GetUsers()
     {
-        return Ok(_mapper.Map<IEnumerable<MemberDto>>(await _userRepository.GetUsersAsync()));
+        return Ok(_mapper.Map<IEnumerable<MemberDto>>(await _userRepository.GetMembersAsync()));
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<MemberDto>> GetUser([FromRoute] string username)
     {
-        var user = await _userRepository.GetUserByNameAsync(username);
+        var user = await _userRepository.GetMemberByUsernameAsync(username);
 
         return user != null ? Ok(_mapper.Map<MemberDto>(user)) : NotFound();
     }

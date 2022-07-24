@@ -17,9 +17,9 @@ public class SeedService : ISeedService
         using var hmac = new HMACSHA512();
 
         var userEntityFaker = new Faker<UserEntity>()
-            .RuleFor(u => u.UserName, u => u.Person.UserName)
+            .RuleFor(u => u.UserName, u => u.Internet.UserName().ToLower())
             .RuleFor(u => u.DateOfBirth, u => u.Person.DateOfBirth.ToUniversalTime())
-            .RuleFor(u => u.KnownAs, u => u.Person.UserName.ToLower())
+            .RuleFor(u => u.KnownAs, u => u.Internet.UserName())
             .RuleFor(u => u.Gender, u => u.Person.Gender.ToString())
             .RuleFor(u => u.LookingFor, u => u.Lorem.Text())
             .RuleFor(u => u.Interests, u => u.Lorem.Word())
@@ -34,7 +34,7 @@ public class SeedService : ISeedService
             .RuleFor(p => p.IsMain, p => true)
             .RuleFor(p => p.UserEntity, u => userEntityFaker);
 
-        foreach (var photoFaker in photoFakerBogus.Generate(1000))
+        foreach (var photoFaker in photoFakerBogus.Generate(50))
         {
             _context.Photos.Add(photoFaker);
             await _context.SaveChangesAsync();
