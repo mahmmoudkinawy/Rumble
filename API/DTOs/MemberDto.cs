@@ -1,4 +1,8 @@
 ﻿namespace API.DTOs;
+
+/// <summary>
+/// The user entity returns as the following data
+/// </summary>
 public class MemberDto
 {
     public int Id { get; set; }
@@ -14,5 +18,9 @@ public class MemberDto
     public string Interests { get; set; }
     public string City { get; set; }
     public string Country { get; set; }
+
+    /// <summary>
+    /// Returns the collection related to this user
+    /// </summary>
     public ICollection<PhotoDto> Photos { get; set; }
 }
