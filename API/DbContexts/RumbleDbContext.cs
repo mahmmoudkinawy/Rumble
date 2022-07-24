@@ -5,4 +5,5 @@ public class RumbleDbContext : DbContext
     { }
 
     public DbSet<UserEntity> Users { get; set; }
+    public DbSet<PhotoEntity> Photos { get; set; }
 }

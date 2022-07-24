@@ -6,6 +6,8 @@ public static class ApplicationServiceExtenstions
     {
         services.AddScoped<ITokenService, TokenService>();
 
+        services.AddScoped<ISeedService, SeedService>();
+
         services.AddControllers().AddXmlSerializerFormatters();
 
         services.AddDbContext<RumbleDbContext>(options =>

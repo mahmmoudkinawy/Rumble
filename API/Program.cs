@@ -23,9 +23,12 @@ var app = builder.Build();
 app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseSwagger();
+
 app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
+
+await SeedFakeData();
 
 app.UseCors(CorsConstants.CorsPolicyName);
 
@@ -36,3 +39,10 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+async Task SeedFakeData()
+{
+    using var scope = app.Services.CreateScope();
+    var seed = scope.ServiceProvider.GetRequiredService<ISeedService>();
+    await seed.SeedData();
+}
