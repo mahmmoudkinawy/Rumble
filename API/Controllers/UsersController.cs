@@ -7,10 +7,12 @@
 [Route("api/users")]
 public class UsersController : ControllerBase
 {
-    private readonly RumbleDbContext _context;
+    private readonly IUserRepository _userRepository;
 
-    public UsersController(RumbleDbContext context)
-        => _context = context;
+    public UsersController(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
 
     /// <summary>
     /// Returns all the users in the database
@@ -21,7 +23,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<UserEntity>> GetUsers()
     {
-        return Ok(await _context.Users.ToListAsync());
+        return Ok(await _userRepository.GetUsersAsync());
     }
 
     /// <summary>
@@ -34,7 +36,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<ActionResult<UserEntity>> GetUser([FromRoute] int id)
     {
-        var user = await _context.Users.FindAsync(id);
+        var user = await _userRepository.GetUserByIdAsync(id);
 
         return user != null ? Ok(user) : NotFound();
     }

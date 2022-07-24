@@ -8,6 +8,8 @@ public static class ApplicationServiceExtenstions
 
         services.AddScoped<ISeedService, SeedService>();
 
+        services.AddScoped<IUserRepository, UserRepository>();
+
         services.AddControllers().AddXmlSerializerFormatters();
 
         services.AddDbContext<RumbleDbContext>(options =>
