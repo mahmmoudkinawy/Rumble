@@ -22,3 +22,4 @@ global using API.Middleware;
 global using System.ComponentModel.DataAnnotations.Schema;
 global using Bogus;
 global using API.Repositories;
+global using AutoMapper;

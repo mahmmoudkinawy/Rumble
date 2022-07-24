@@ -10,6 +10,8 @@ public static class ApplicationServiceExtenstions
 
         services.AddScoped<IUserRepository, UserRepository>();
 
+        services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
         services.AddControllers().AddXmlSerializerFormatters();
 
         services.AddDbContext<RumbleDbContext>(options =>

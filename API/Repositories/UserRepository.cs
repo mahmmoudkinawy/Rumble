@@ -15,12 +15,16 @@ public class UserRepository : IUserRepository
 
     public async Task<UserEntity> GetUserByNameAsync(string username)
     {
-        return await _context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+        return await _context.Users
+            .Include(p => p.Photos)
+            .FirstOrDefaultAsync(u => u.UserName == username);
     }
 
     public async Task<IEnumerable<UserEntity>> GetUsersAsync()
     {
-        return await _context.Users.ToListAsync();
+        return await _context.Users
+            .Include(p => p.Photos)
+            .ToListAsync();
     }
 
     public void Update(UserEntity user)

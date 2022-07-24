@@ -8,22 +8,23 @@
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IMapper _mapper;
 
-    public UsersController(IUserRepository userRepository)
+    public UsersController(IUserRepository userRepository,IMapper mapper)
     {
         _userRepository = userRepository;
+        _mapper = mapper;
     }
 
     /// <summary>
     /// Returns all the users in the database
     /// </summary>
     /// <returns></returns>
-
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<UserEntity>> GetUsers()
+    public async Task<ActionResult<MemberDto>> GetUsers()
     {
-        return Ok(await _userRepository.GetUsersAsync());
+        return Ok(_mapper.Map<IEnumerable<MemberDto>>(await _userRepository.GetUsersAsync()));
     }
 
     /// <summary>
@@ -31,14 +32,14 @@ public class UsersController : ControllerBase
     /// </summary>
     /// <param name="id">Id must be passed as a Route in the API</param>
     /// <returns></returns>
-    [HttpGet("{id}")]
+    [HttpGet("{username}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<UserEntity>> GetUser([FromRoute] int id)
+    public async Task<ActionResult<MemberDto>> GetUser([FromRoute] string username)
     {
-        var user = await _userRepository.GetUserByIdAsync(id);
+        var user = await _userRepository.GetUserByNameAsync(username);
 
-        return user != null ? Ok(user) : NotFound();
+        return user != null ? Ok(_mapper.Map<MemberDto>(user)) : NotFound();
     }
 
 
