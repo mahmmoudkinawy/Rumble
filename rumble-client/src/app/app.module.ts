@@ -17,10 +17,11 @@ import { MessagesComponent } from './pages/messages/messages.component';
 import { ListsComponent } from './pages/lists/lists.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
-
-import { ErrorsInterceptor } from './interceptors/errors.interceptor';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberCardComponent } from './pages/members/member-card/member-card.component';
+
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { ErrorsInterceptor } from './interceptors/errors.interceptor';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MemberCardComponent } from './pages/members/member-card/member-card.com
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorsInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
