@@ -5,15 +5,14 @@
 /// </summary>
 [ApiController]
 [Route("api/users")]
+[Authorize]
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
-    private readonly IMapper _mapper;
 
-    public UsersController(IUserRepository userRepository,IMapper mapper)
+    public UsersController(IUserRepository userRepository)
     {
         _userRepository = userRepository;
-        _mapper = mapper;
     }
 
     /// <summary>
@@ -24,7 +23,7 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MemberDto>> GetUsers()
     {
-        return Ok(_mapper.Map<IEnumerable<MemberDto>>(await _userRepository.GetMembersAsync()));
+        return Ok(await _userRepository.GetMembersAsync());
     }
 
     /// <summary>
@@ -39,7 +38,7 @@ public class UsersController : ControllerBase
     {
         var user = await _userRepository.GetMemberByUsernameAsync(username);
 
-        return user != null ? Ok(_mapper.Map<MemberDto>(user)) : NotFound();
+        return user != null ? Ok(user) : NotFound();
     }
 
 
