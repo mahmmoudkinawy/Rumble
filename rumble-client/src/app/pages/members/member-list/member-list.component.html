@@ -1,1 +1,5 @@
-<h1 *ngIf="members.length">{{members[0].username}}</h1>
+<mat-grid-list cols="4" rowHeight="2:4" *ngIf="members.length">
+    <mat-grid-tile *ngFor="let member of members">
+        <app-member-card [member]="member"></app-member-card>
+    </mat-grid-tile>
+</mat-grid-list>
