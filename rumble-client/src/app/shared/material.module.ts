@@ -19,6 +19,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 const MaterialComponents = [
   MatSliderModule,
   MatSlideToggleModule,
@@ -38,7 +40,12 @@ const MaterialComponents = [
 ];
 
 @NgModule({
-  imports: [CommonModule, MaterialComponents, FlexLayoutModule],
-  exports: [MaterialComponents, FlexLayoutModule],
+  imports: [
+    CommonModule,
+    MaterialComponents,
+    FlexLayoutModule,
+    NgxGalleryModule,
+  ],
+  exports: [MaterialComponents, FlexLayoutModule, NgxGalleryModule],
 })
 export class MaterialModule {}
