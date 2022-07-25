@@ -1,3 +1,41 @@
-<h1 *ngIf="member">
-    {{member.id}}
-</h1>
+<ng-container *ngIf="member">
+    <mat-grid-list cols="1" rows="1" rowHeight="2:1" style="padding-top: 18rem;">
+        <mat-grid-tile>
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <img [src]="member.photoUrl || '/assets/images/user.png' " mat-card-avatar
+                        class="example-header-image" />
+                    <mat-card-title>{{member.knownAs}}</mat-card-title>
+                    <mat-card-subtitle>{{member.username}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="member.photoUrl || '/assets/images/user.png'">
+                <mat-card-content>
+                    <h2>Location: <strong>{{member.country}} - {{member.city}}</strong></h2>
+                    <h2>Age: <strong>{{member.age}} </strong></h2>
+                    <h2>Last active: <strong>{{member.lastActive | date}}</strong></h2>
+                    <h2>Member sicne: <strong>{{member.created | date}} </strong></h2>
+                </mat-card-content>
+                <button mat-button><span class="material-icons md-36">favorite</span></button>
+                <button mat-button><span class="material-icons md-36">send</span></button>
+            </mat-card>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+            <mat-tab-group>
+                <mat-tab label="About {{member.knownAs}}">
+                    <h1>Descritbion: </h1>
+                    <p>{{member.introduction}}</p>
+                    <h1>Looking for:</h1>
+                    <p>{{member.lookingFor}}</p>
+                </mat-tab>
+                <mat-tab label="Internests"> {{member.interests}} </mat-tab>
+                <mat-tab label="Photos"> Photos will go here </mat-tab>
+            </mat-tab-group>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+
+
+
+
+</ng-container>

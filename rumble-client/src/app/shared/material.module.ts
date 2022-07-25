@@ -17,6 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const MaterialComponents = [
   MatSliderModule,
@@ -33,6 +34,7 @@ const MaterialComponents = [
   MatProgressSpinnerModule,
   MatGridListModule,
   MatIconModule,
+  MatTabsModule,
 ];
 
 @NgModule({
