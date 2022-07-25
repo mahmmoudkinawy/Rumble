@@ -86,6 +86,31 @@
             Put Password and it's Required
             </summary>
         </member>
+        <member name="T:API.DTOs.MemberDto">
+            <summary>
+            The user entity returns as the following data
+            </summary>
+        </member>
+        <member name="P:API.DTOs.MemberDto.Photos">
+            <summary>
+            Returns the collection related to this user
+            </summary>
+        </member>
+        <member name="T:API.DTOs.PhotoDto">
+            <summary>
+            Photo DTO with specific attributes
+            </summary>
+        </member>
+        <member name="P:API.DTOs.PhotoDto.Url">
+            <summary>
+            URL of the hosted image for this user
+            </summary>
+        </member>
+        <member name="P:API.DTOs.PhotoDto.IsMain">
+            <summary>
+            Indicator that return if that's the main profile Photo or not
+            </summary>
+        </member>
         <member name="T:API.DTOs.RegisterDto">
             <summary>
             Model that used by account controller for register users
