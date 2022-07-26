@@ -22,6 +22,7 @@ import { MemberCardComponent } from './pages/members/member-card/member-card.com
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorsInterceptor } from './interceptors/errors.interceptor';
+import { MemberEditComponent } from './pages/member-edit/member-edit.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ErrorsInterceptor } from './interceptors/errors.interceptor';
     NotFoundComponent,
     ServerErrorComponent,
     MemberCardComponent,
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
