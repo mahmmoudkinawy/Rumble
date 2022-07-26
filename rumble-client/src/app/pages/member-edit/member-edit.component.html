@@ -23,8 +23,9 @@
                             <input matInput placeholder="Ex. Pizza" [(ngModel)]="member.country" name="country" />
                         </mat-form-field>
                         <br>
-                        <button mat-raised-button color="accent" type="submit" style="width: 305px;">SAVE
-                            CHANGES</button>
+                        <button [disabled]="!editForm.dirty" mat-raised-button color="accent" type="submit"
+                            style="width: 305px;">
+                            SAVE CHANGES</button>
                     </mat-card-actions>
                 </mat-card>
             </div>
