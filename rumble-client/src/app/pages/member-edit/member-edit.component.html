@@ -1,1 +1,53 @@
-<p>member-edit works!</p>
+<div class="bounds" style="padding: 50px;" *ngIf="member">
+    <div class="content" fxLayout="row" fxLayout.xs="column" fxFlexFill>
+        <form #editFrom="ngForm" (ngSubmit)="updateMember()">
+            <div fxFlex="33" class="sec1" fxFlex.xs="55">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <img [src]="member.photoUrl" [alt]="member.knownAs" mat-card-avatar
+                            class="example-header-image" />
+                        <mat-card-title>{{member.knownAs}}</mat-card-title>
+                        <mat-card-subtitle>{{member.age}} years old</mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="member.photoUrl">
+                    <mat-card-actions>
+                        <mat-card-title class="mat-title">Member Since: <strong>{{member.created | date}}</strong>
+                        </mat-card-title>
+
+                        <mat-form-field class="example-full-width" appearance="fill" width="100%">
+                            <mat-label>City</mat-label>
+                            <input matInput placeholder="Ex. Pizza" [(ngModel)]="member.city" name="city" />
+                        </mat-form-field>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Country</mat-label>
+                            <input matInput placeholder="Ex. Pizza" [(ngModel)]="member.country" name="country" />
+                        </mat-form-field>
+                        <br>
+                        <button mat-raised-button color="accent" type="submit" style="width: 305px;">SAVE
+                            CHANGES</button>
+                    </mat-card-actions>
+                </mat-card>
+            </div>
+            <div fxFlex="67" class="sec2" style="padding-left: 15px;">
+                <mat-tab-group>
+                    <mat-tab label="About {{member.knownAs}}">
+                        <mat-form-field class="example-full-width" appearance="fill" width="100%">
+                            <mat-label>Description</mat-label>
+                            <textarea rows="25" matInput [(ngModel)]="member.introduction"
+                                name="introduction"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="fill" width="100%">
+                            <mat-label>Looking For</mat-label>
+                            <textarea rows="25" matInput [(ngModel)]="member.lookingFor" name="lookingFor"></textarea>
+                        </mat-form-field>
+                        <mat-form-field class="example-full-width" appearance="fill" width="100%">
+                            <mat-label>Interests</mat-label>
+                            <textarea rows="25" matInput [(ngModel)]="member.interests" name="interests"></textarea>
+                        </mat-form-field>
+                    </mat-tab>
+                    <mat-tab label="Edit Photos"> Photos goes here</mat-tab>
+                </mat-tab-group>
+            </div>
+        </form>
+    </div>
+</div>
