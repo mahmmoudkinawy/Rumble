@@ -6,5 +6,5 @@ public interface IUserRepository
     Task<UserEntity> GetUserByNameAsync(string username);
     Task<IEnumerable<MemberDto>> GetMembersAsync();
     Task<MemberDto> GetMemberByUsernameAsync(string username);
-    void Update(UserEntity user);
+    Task Update(UserEntity user);
 }

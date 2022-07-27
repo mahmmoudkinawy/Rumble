@@ -71,6 +71,13 @@
             <param name="id">Id must be passed as a Route in the API</param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.UsersController.UpdateUser(API.DTOs.MemberUpdateDto)">
+            <summary>
+            Update some attributes for the user
+            </summary>
+            <param name="memberUpdateDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:API.DTOs.LoginDto">
             <summary>
             Model that used by account controller for login users

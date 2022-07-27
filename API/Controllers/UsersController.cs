@@ -9,10 +9,12 @@
 public class UsersController : ControllerBase
 {
     private readonly IUserRepository _userRepository;
+    private readonly IMapper _mapper;
 
-    public UsersController(IUserRepository userRepository)
+    public UsersController(IUserRepository userRepository, IMapper mapper)
     {
         _userRepository = userRepository;
+        _mapper = mapper;
     }
 
     /// <summary>
@@ -41,5 +43,23 @@ public class UsersController : ControllerBase
         return user != null ? Ok(user) : NotFound();
     }
 
+    /// <summary>
+    /// Update some attributes for the user
+    /// </summary>
+    /// <param name="memberUpdateDto"></param>
+    /// <returns></returns>
+    [HttpPut]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    public async Task<IActionResult> UpdateUser([FromBody] MemberUpdateDto memberUpdateDto)
+    {
+        var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+        var user = await _userRepository.GetUserByNameAsync(username);
+
+        _mapper.Map(memberUpdateDto, user);
+
+        _userRepository.Update(user);
+
+        return NoContent();
+    }
 
 }
