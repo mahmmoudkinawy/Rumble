@@ -21,6 +21,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 const MaterialComponents = [
   MatSliderModule,
   MatSlideToggleModule,
@@ -37,6 +39,7 @@ const MaterialComponents = [
   MatGridListModule,
   MatIconModule,
   MatTabsModule,
+  NgxSpinnerModule,
 ];
 
 @NgModule({

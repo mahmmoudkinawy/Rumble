@@ -19,10 +19,11 @@ import { TestErrorsComponent } from './errors/test-errors/test-errors.component'
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberCardComponent } from './pages/members/member-card/member-card.component';
+import { MemberEditComponent } from './pages/member-edit/member-edit.component';
 
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorsInterceptor } from './interceptors/errors.interceptor';
-import { MemberEditComponent } from './pages/member-edit/member-edit.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MemberEditComponent } from './pages/member-edit/member-edit.component';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorsInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })
