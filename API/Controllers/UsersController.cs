@@ -102,4 +102,25 @@ public class UsersController : ControllerBase
         return BadRequest("Problem Uploading Image");
     }
 
+    //[HttpPost("set-main-photo/{photoId}")]
+    //public async Task<IActionResult> SetMainPhoto([FromRoute] int photoId)
+    //{
+    //    var user = await _userRepository.GetMemberByUsernameAsync(User.GetUsername());
+
+    //    var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
+
+    //    if (photo.IsMain) return BadRequest("This is already your main photo");
+
+    //    var currentMainPhoto = user.Photos.FirstOrDefault(p => p.Id == photoId);
+
+    //    if (currentMainPhoto != null)
+    //    {
+    //        currentMainPhoto.IsMain = false;
+    //        photo.IsMain = true;
+
+    //        return Ok(photo);
+    //    }
+
+    //    return BadRequest(photo);
+    //}
 }
