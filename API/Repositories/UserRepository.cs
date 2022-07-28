@@ -43,9 +43,10 @@ public class UserRepository : IUserRepository
             .ToListAsync();
     }
 
-    public async Task Update(UserEntity user)
+    public void Update(UserEntity user)
     {
         _context.Entry(user).State = EntityState.Modified;
-        await _context.SaveChangesAsync();
     }
+    public async Task<bool> SaveAllChangeAsync()
+        => await _context.SaveChangesAsync() > 0;
 }

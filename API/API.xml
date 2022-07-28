@@ -78,6 +78,14 @@
             <param name="memberUpdateDto"></param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.UsersController.UploadImage(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            Add an Profile Image! and if there none a profile images at all!
+            The first image gonna be a Main Image
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="T:API.DTOs.LoginDto">
             <summary>
             Model that used by account controller for login users
