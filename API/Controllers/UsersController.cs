@@ -102,25 +102,28 @@ public class UsersController : ControllerBase
         return BadRequest("Problem Uploading Image");
     }
 
-    //[HttpPost("set-main-photo/{photoId}")]
-    //public async Task<IActionResult> SetMainPhoto([FromRoute] int photoId)
-    //{
-    //    var user = await _userRepository.GetMemberByUsernameAsync(User.GetUsername());
+    [HttpPut("set-main-photo/{photoId}")]
+    public async Task<IActionResult> SetMainPhoto([FromRoute] int photoId)
+    {
+        var user = await _userRepository.GetUserByNameAsync(User.GetUsername());
 
-    //    var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
+        var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
 
-    //    if (photo.IsMain) return BadRequest("This is already your main photo");
+        if (photo == null) return NotFound("There is no image with this ID");
 
-    //    var currentMainPhoto = user.Photos.FirstOrDefault(p => p.Id == photoId);
+        if (photo.IsMain) return BadRequest("Already the main photo");
 
-    //    if (currentMainPhoto != null)
-    //    {
-    //        currentMainPhoto.IsMain = false;
-    //        photo.IsMain = true;
+        var currentPhoto = user.Photos.FirstOrDefault(p => p.IsMain);
 
-    //        return Ok(photo);
-    //    }
+        if (currentPhoto != null)
+        {
+            currentPhoto.IsMain = false;
+            photo.IsMain = true;
 
-    //    return BadRequest(photo);
-    //}
+            await _userRepository.SaveAllChangeAsync();
+            return NoContent();
+        }
+
+        return BadRequest("Problem Setting the main photo");
+    }
 }
