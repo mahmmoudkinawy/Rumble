@@ -46,7 +46,9 @@
                             <textarea rows="25" matInput [(ngModel)]="member.interests" name="interests"></textarea>
                         </mat-form-field>
                     </mat-tab>
-                    <mat-tab label="Edit Photos"> Photos goes here</mat-tab>
+                    <mat-tab label="Edit Photos">
+                        <app-photo-editor style="display: flex;" [member]="member"></app-photo-editor>
+                    </mat-tab>
                 </mat-tab-group>
             </div>
         </form>

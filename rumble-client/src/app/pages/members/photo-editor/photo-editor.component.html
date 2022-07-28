@@ -1,0 +1,45 @@
+<ng-container>
+    <div style="padding: 5px;" *ngFor="let photo of member?.photos">
+        <img src="{{photo.url}}" alt="{{photo.url}}" style="width: 90px; display: flex;" />
+        <div>
+            <button mat-mini-fab color="primary">
+                Main
+            </button>
+            <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="uploader && member" style="padding-top: 50px;">
+        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropzoneOver}" (fileOver)="fileOverBase($event)"
+            [uploader]="uploader" class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+            <i class="fa fa-upload fa-3x"></i>
+            Drop photos here
+        </div>
+
+        <input type="file" ng2FileSelect [uploader]="uploader" />
+
+        <div>
+            <div>
+                Queue progress:
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+                [disabled]="!uploader.getNotUploadedItems().length">
+                <span class="fa fa-upload"></span> Upload all
+            </button>
+            <button type="button" class="btn btn-warning btn-s" (click)="uploader.cancelAll()"
+                [disabled]="!uploader.isUploading">
+                <span class="fa fa-ban"></span> Cancel all
+            </button>
+            <button type="button" class="btn btn-danger btn-s" (click)="uploader.clearQueue()"
+                [disabled]="!uploader.queue.length">
+                <span class="fa fa-trash"></span> Remove all
+            </button>
+        </div>
+
+    </div>
+</ng-container>

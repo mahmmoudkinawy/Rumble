@@ -23,6 +23,8 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 
+import { FileUploadModule } from 'ng2-file-upload';
+
 const MaterialComponents = [
   MatSliderModule,
   MatSlideToggleModule,
@@ -48,7 +50,13 @@ const MaterialComponents = [
     MaterialComponents,
     FlexLayoutModule,
     NgxGalleryModule,
+    FileUploadModule,
   ],
-  exports: [MaterialComponents, FlexLayoutModule, NgxGalleryModule],
+  exports: [
+    MaterialComponents,
+    FlexLayoutModule,
+    NgxGalleryModule,
+    FileUploadModule,
+  ],
 })
 export class MaterialModule {}
