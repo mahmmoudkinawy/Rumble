@@ -24,4 +24,7 @@ global using Bogus;
 global using API.Repositories;
 global using AutoMapper;
 global using AutoMapper.QueryableExtensions;
-
+global using API.Helpers;
+global using CloudinaryDotNet.Actions;
+global using CloudinaryDotNet;
+global using Microsoft.Extensions.Options;
