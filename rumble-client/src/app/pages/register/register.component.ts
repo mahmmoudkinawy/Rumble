@@ -1,5 +1,10 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -33,8 +38,19 @@ export class RegisterComponent implements OnInit {
         Validators.maxLength(8),
         Validators.minLength(4),
       ]),
-      confirmPassword: new FormControl('', [Validators.required]),
+      confirmPassword: new FormControl('', [
+        Validators.required,
+        this.matchValue('password'),
+      ]),
     });
+  }
+
+  matchValue(matchTo: string): ValidatorFn {
+    return (control: any) => {
+      return control?.value === control.parent?.controls[matchTo].value
+        ? null
+        : { isMatching: true };
+    };
   }
 
   register() {
