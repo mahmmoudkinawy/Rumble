@@ -5,7 +5,8 @@
             <button mat-mini-fab color="primary" [disabled]="photo.isMain" (click)="setMainPhoto(photo)">
                 Main
             </button>
-            <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon">
+            <button mat-mini-fab color="warn" aria-label="Example icon button with a filter list icon"
+                [disabled]="photo.isMain" (click)="deletePhoto(photo.id)">
                 <mat-icon>delete</mat-icon>
             </button>
         </div>
