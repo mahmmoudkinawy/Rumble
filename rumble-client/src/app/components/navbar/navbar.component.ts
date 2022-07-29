@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
 
+import { User } from 'src/app/models/user';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({
@@ -10,10 +12,15 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class NavbarComponent implements OnInit {
   model: any = {};
+  user: User | null = null;
 
   constructor(public accountService: AccountService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.accountService.currentUser$
+      .pipe(take(1))
+      .subscribe((user) => (this.user = user));
+  }
 
   login() {
     this.accountService.login(this.model).subscribe(() => {
