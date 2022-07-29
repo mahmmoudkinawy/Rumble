@@ -9,13 +9,12 @@
         <a routerLink="/errors">Errors</a>
     </div>
 
-    <ng-container *ngIf="(accountService.currentUser$ | async) && user">
-        <img width="50" [src]="user.photoUrl" style="padding-left: 574px;" [alt]="user.username" />
-    </ng-container>
-
-    <div *ngIf="(accountService.currentUser$ | async)">
+    <div *ngIf="(accountService.currentUser$ | async) && user">
+        <ng-container>
+            <img width="50" [src]="user.photoUrl" [alt]="user.username" />
+        </ng-container>
         <mat-form-field appearance="fill">
-            <mat-label>Welcome {{user?.username |titlecase}}</mat-label>
+            <mat-label>Welcome {{user.username |titlecase}}</mat-label>
             <mat-select>
                 <mat-option routerLink="/member/edit">
                     Profile
