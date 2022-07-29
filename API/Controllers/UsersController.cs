@@ -102,6 +102,12 @@ public class UsersController : ControllerBase
         return BadRequest("Problem Uploading Image");
     }
 
+    /// <summary>
+    /// Set another image as the main one! instead of the main image!
+    /// </summary>
+    /// <param name="photoId">Photo Id to be set main photo</param>
+    /// <returns>Returns an object</returns>
+
     [HttpPut("set-main-photo/{photoId}")]
     public async Task<IActionResult> SetMainPhoto([FromRoute] int photoId)
     {
@@ -126,6 +132,13 @@ public class UsersController : ControllerBase
 
         return BadRequest("Problem Setting the main photo");
     }
+
+    /// <summary>
+    /// Delete an image from the images collection, and if it was the main one! 
+    /// It won't be deleted
+    /// </summary>
+    /// <param name="photoId">Photo Id to be deleted</param>
+    /// <returns>Returns an object</returns>
 
     [HttpDelete("delete-photo/{photoId}")]
     public async Task<ActionResult> DeletePhoto([FromRoute] int photoId)

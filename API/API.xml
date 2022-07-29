@@ -86,6 +86,21 @@
             <param name="file"></param>
             <returns></returns>
         </member>
+        <member name="M:API.Controllers.UsersController.SetMainPhoto(System.Int32)">
+            <summary>
+            Set another image as the main one! instead of the main image!
+            </summary>
+            <param name="photoId">Photo Id to be set main photo</param>
+            <returns>Returns an object</returns>
+        </member>
+        <member name="M:API.Controllers.UsersController.DeletePhoto(System.Int32)">
+            <summary>
+            Delete an image from the images collection, and if it was the main one! 
+            It won't be deleted
+            </summary>
+            <param name="photoId">Photo Id to be deleted</param>
+            <returns>Returns an object</returns>
+        </member>
         <member name="T:API.DTOs.LoginDto">
             <summary>
             Model that used by account controller for login users
@@ -155,6 +170,11 @@
         <member name="P:API.DTOs.UserDto.Username">
             <summary>
             Username as a string
+            </summary>
+        </member>
+        <member name="P:API.DTOs.UserDto.PhotoUrl">
+            <summary>
+            Image Url as a link
             </summary>
         </member>
     </members>

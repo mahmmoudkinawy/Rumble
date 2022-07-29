@@ -62,7 +62,9 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
-        var user = await _context.Users.FirstOrDefaultAsync(u => u.UserName == loginDto.Username);
+        var user = await _context.Users
+            .Include(p => p.Photos)
+            .FirstOrDefaultAsync(u => u.UserName == loginDto.Username);
 
         if (user == null) return Unauthorized("Username does not found");
 
@@ -81,7 +83,8 @@ public class AccountController : ControllerBase
         return Ok(new UserDto
         {
             Token = _tokenService.CreateToken(user),
-            Username = user.UserName
+            Username = user.UserName,
+            PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url
         });
     }
 

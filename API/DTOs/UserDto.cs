@@ -14,4 +14,9 @@ public class UserDto
     /// Username as a string
     /// </summary>
     public string Username { get; set; }
+
+    /// <summary>
+    /// Image Url as a link
+    /// </summary>
+    public string PhotoUrl { get; set; }
 }
