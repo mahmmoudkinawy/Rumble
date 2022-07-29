@@ -126,4 +126,29 @@ public class UsersController : ControllerBase
 
         return BadRequest("Problem Setting the main photo");
     }
+
+    [HttpDelete("delete-photo/{photoId}")]
+    public async Task<ActionResult> DeletePhoto([FromRoute] int photoId)
+    {
+        var user = await _userRepository.GetUserByNameAsync(User.GetUsername());
+
+        var photo = user.Photos.FirstOrDefault(p => p.Id == photoId);
+
+        if (photo == null) return NotFound("Image with the given ID was not found");
+
+        if (photo.IsMain) return BadRequest("Can not delete main photo");
+
+        if (photo.PublicId != null)
+        {
+            var result = await _photoService.DeletePhotoAsync(photo.PublicId);
+
+            if (result.Error != null) return BadRequest(result.Error.Message);
+        }
+
+        user.Photos.Remove(photo);
+
+        if (await _userRepository.SaveAllChangeAsync()) return Ok();
+
+        return BadRequest("Problem deleting the photo");
+    }
 }
