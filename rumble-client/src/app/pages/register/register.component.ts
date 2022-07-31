@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   ValidatorFn,
@@ -23,7 +24,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private accountService: AccountService,
     private router: Router,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -31,17 +33,17 @@ export class RegisterComponent implements OnInit {
   }
 
   intitializeForm() {
-    this.registerForm = new FormGroup({
-      username: new FormControl('', [Validators.required]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.maxLength(8),
-        Validators.minLength(4),
-      ]),
-      confirmPassword: new FormControl('', [
-        Validators.required,
-        this.matchValue('password'),
-      ]),
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required]],
+      knownAs: ['', [Validators.required]],
+      dateOfBirth: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      country: ['', [Validators.required]],
+      password: [
+        '',
+        [Validators.required, Validators.maxLength(8), Validators.minLength(4)],
+      ],
+      confirmPassword: ['', [Validators.required, this.matchValue('password')]],
     });
   }
 

@@ -1,47 +1,27 @@
 <form *ngIf="registerForm" [formGroup]="registerForm" (submit)="register()" class="example-form">
-    
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Username</mat-label>
-        <input matInput formControlName="username" />
-        <mat-error *ngIf="registerForm.get('username')?.hasError('required')">
-            Email is <strong>required</strong>
-        </mat-error>
-    </mat-form-field>
-    <br>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Password</mat-label>
-        <input matInput type="password" formControlName="password" />
-        <mat-error *ngIf="registerForm.get('password')?.hasError('required')">
-            Password is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="registerForm.get('password')?.hasError('minlength')">
-            Password Min length is <strong>4 Characters</strong>
-        </mat-error>
-        <mat-error *ngIf="registerForm.get('password')?.hasError('maxlength')">
-            Password Max length is <strong>4 Characters</strong>
-        </mat-error>
-    </mat-form-field>
+    <app-input-text [formControl]="$any(registerForm.controls?.['username'])" [label]="'Username'"></app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['knownAs'])" [label]="'Known as'"></app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['dateOfBirth'])" [type]="'date'"
+        [label]="'Date Of Birth'">
+    </app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['city'])" [label]="'City'"></app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['country'])" [label]="'Country'"></app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['password'])" [type]="'password'" [label]="'Password'">
+    </app-input-text>
+    <app-input-text [formControl]="$any(registerForm.controls?.['confirmPassword'])" [type]="'password'"
+        [label]="'Confirm Password'">
+    </app-input-text>
 
-    <br>
 
-    <mat-form-field class="example-full-width" appearance="fill">
-        <mat-label>Confirm Password</mat-label>
-        <input matInput type="password" formControlName="confirmPassword" />
-        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('required')">
-            Confirm password is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="registerForm.get('confirmPassword')?.hasError('isMatching')">
-            Confirm password must match <strong>Password</strong>
-        </mat-error>
-    </mat-form-field>
 
-    <br>
-
-    <button mat-raised-button color="primary" style="margin-right: 1rem;" type="submit"
-        [disabled]="registerForm.invalid">Register</button>
+    <button mat-raised-button color="primary" style="margin-right: 1rem;" type="submit">Register</button>
     <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
 </form>
+
+<br>
+<br>
+<br>
 
 <p>Form Value: {{registerForm?.value | json}}</p>
 <p>Form Status: {{registerForm?.status}}</p>
