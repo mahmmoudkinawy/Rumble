@@ -8,7 +8,7 @@ public static class HttpExtenstions
         int totalItems)
     {
         var paginationHeader = new PaginationHeader(currentPage,
-            itemsPerPage,
+            itemsPerPage, 
             totalPages,
             totalItems);
 
