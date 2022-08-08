@@ -18,6 +18,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
@@ -42,6 +43,7 @@ const MaterialComponents = [
   MatIconModule,
   MatTabsModule,
   NgxSpinnerModule,
+  MatPaginatorModule,
 ];
 
 @NgModule({

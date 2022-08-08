@@ -25,8 +25,16 @@ export class MemberListComponent implements OnInit {
     this.membersService
       .getMembers(this.pageNumber, this.pageSize)
       .subscribe((response) => {
+        console.log(this.pageNumber);
         this.members = response.result;
         this.pagination = response.pagination;
+        console.log(response);
       });
+  }
+
+  pageChanged(event: any) {
+    console.log(this.pagination);
+    this.pageNumber = event.page;
+    this.loadMembers();
   }
 }

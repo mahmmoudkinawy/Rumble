@@ -19,12 +19,15 @@ export class MembersService {
 
   constructor(private http: HttpClient) {}
 
-  getMembers(page?: number, itemsPerPage?: number) {
+  getMembers(page: number, itemsPerPage?: number) {
+    console.log('Page Size', page);
+
     let params = new HttpParams();
 
     if (page !== null && itemsPerPage !== null) {
-      params = params.append('pageNumber', page!.toString());
-      params = params.append('pageSize', itemsPerPage!.toString());
+      console.log('Page Size', page);
+      params = params.append('pageSize', itemsPerPage as number); //error
+      params = params.append('pageNumber', page as number); //error
     }
 
     return this.http
@@ -34,7 +37,7 @@ export class MembersService {
           this.paginatedResult.result = response.body;
           if (response.headers.get('Pagination') !== null) {
             this.paginatedResult.pagination = JSON.parse(
-              response.headers.get('Pagination') as any
+              response.headers.get('Pagination') as string
             );
           }
           return this.paginatedResult;
@@ -43,8 +46,8 @@ export class MembersService {
   }
 
   getMember(username: string) {
-    const member = this.members.find((m) => m.username === username);
-    if (member !== undefined) return of<Member>(member);
+    // const member = this.members.find((m) => m.username === username);
+    // if (member !=) return of<Member>(member);
     return this.http.get<Member>(`${this.baseUrl}/users/${username}`);
   }
 
