@@ -20,7 +20,7 @@ public class PagedList<T> : List<T>
         AddRange(items);
     }
 
-    public async Task<PagedList<T>> CreateAsync(
+    public static async Task<PagedList<T>> CreateAsync(
         IQueryable<T> source,
         int pageNumber,
         int pageSize)

@@ -58,7 +58,7 @@
             Users Controller for getting users details
             </summary>
         </member>
-        <member name="M:API.Controllers.UsersController.GetUsers">
+        <member name="M:API.Controllers.UsersController.GetUsers(API.Helpers.UserParams)">
             <summary>
             Returns all the users in the database
             </summary>

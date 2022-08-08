@@ -28,9 +28,17 @@ public class UsersController : ControllerBase
     /// <returns></returns>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<MemberDto>> GetUsers()
+    public async Task<ActionResult<MemberDto>> GetUsers([FromQuery] UserParams userParams)
     {
-        return Ok(await _userRepository.GetMembersAsync());
+        var users = await _userRepository.GetMembersAsync(userParams);
+
+        Response.AddPaginationHeader(
+            users.CurrentPage,
+            users.PageSize,
+            users.TotalPages,
+            users.TotalCount);
+
+        return Ok(users);
     }
 
     /// <summary>
