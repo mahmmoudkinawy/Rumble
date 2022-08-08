@@ -10,5 +10,7 @@ public class AutoMapperProfiles : Profile
         CreateMap<PhotoEntity, PhotoDto>();
 
         CreateMap<MemberUpdateDto, UserEntity>();
+
+        CreateMap<RegisterDto, UserEntity>().ReverseMap();
     }
 }

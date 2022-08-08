@@ -11,11 +11,16 @@ public class AccountController : ControllerBase
 {
     private readonly RumbleDbContext _context;
     private readonly ITokenService _tokenService;
+    private readonly IMapper _mapper;
 
-    public AccountController(RumbleDbContext context, ITokenService tokenService)
+    public AccountController(
+        RumbleDbContext context,
+        ITokenService tokenService,
+        IMapper mapper)
     {
         _context = context;
         _tokenService = tokenService;
+        _mapper = mapper;
     }
 
     /// <summary>
@@ -32,14 +37,13 @@ public class AccountController : ControllerBase
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
+        var user = _mapper.Map<UserEntity>(registerDto);
+
         using var hmac = new HMACSHA512();
 
-        var user = new UserEntity
-        {
-            UserName = registerDto.Username.ToLower(),
-            PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
-            PasswordSalt = hmac.Key
-        };
+        user.UserName = registerDto.Username.ToLower();
+        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+        user.PasswordSalt = hmac.Key;
 
         _context.Users.Add(user);
         await _context.SaveChangesAsync();
@@ -47,7 +51,8 @@ public class AccountController : ControllerBase
         return Ok(new UserDto
         {
             Token = _tokenService.CreateToken(user),
-            Username = user.UserName
+            Username = user.UserName,
+            KnownAs = user.KnownAs
         });
     }
 
@@ -72,9 +77,9 @@ public class AccountController : ControllerBase
 
         var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
 
-        for (int i = 0; i <computedHash.Length; i++)
+        for (int i = 0; i < computedHash.Length; i++)
         {
-            if(computedHash[i] != user.PasswordHash[i])
+            if (computedHash[i] != user.PasswordHash[i])
             {
                 return Unauthorized("Invalid password");
             }

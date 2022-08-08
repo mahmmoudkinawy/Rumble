@@ -157,6 +157,31 @@
             Password Max Length is 8 and Minimum is 4, will be changed in the future 
             </summary>
         </member>
+        <member name="P:API.DTOs.RegisterDto.KnownAs">
+            <summary>
+            KnownAs And it's required
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.Gender">
+            <summary>
+            Gender And it's required
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.DateOfBirth">
+            <summary>
+            Date of birth for user
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.City">
+            <summary>
+            City for the user
+            </summary>
+        </member>
+        <member name="P:API.DTOs.RegisterDto.Country">
+            <summary>
+            Country for the user
+            </summary>
+        </member>
         <member name="T:API.DTOs.UserDto">
             <summary>
             UserDto is the model the returns from the two end points => register and login for authenticating the users
@@ -175,6 +200,11 @@
         <member name="P:API.DTOs.UserDto.PhotoUrl">
             <summary>
             Image Url as a link
+            </summary>
+        </member>
+        <member name="P:API.DTOs.UserDto.KnownAs">
+            <summary>
+            Know as to be displayed in the nav bar
             </summary>
         </member>
     </members>
