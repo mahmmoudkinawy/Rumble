@@ -24,8 +24,8 @@ export class MembersService {
     );
 
     params = params.append('minAge', userParams.minAge);
-    params = params.append('minAge', userParams.maxAge);
-    params = params.append('minAge', userParams.gender);
+    params = params.append('maxAge', userParams.maxAge);
+    params = params.append('gender', userParams.gender);
 
     return this.getPaginatedResult<Member[]>(`${this.baseUrl}/users`, params);
   }

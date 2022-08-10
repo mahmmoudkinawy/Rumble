@@ -1,3 +1,31 @@
+<div *ngIf="pagination" style="text-align: center;">
+    <h1>Suggest friends - {{pagination.totalItems}} friend</h1>
+</div>
+
+<div>
+    <form #form="ngForm" *ngIf="userParams" (ngSubmit)="loadMembers()" autocomplete="off">
+        <div>
+            <label for="">Age from: </label>
+            <input type="number" style="width: 70px" name="minAge" [(ngModel)]="userParams.minAge" />
+        </div>
+        <div>
+            <label for="">Age to: </label>
+            <input type="number" style="width: 70px" name="maxAge" [(ngModel)]="userParams.maxAge" />
+        </div>
+        <div>
+            <label for="">Show: </label>
+            <select name="gender" style="width:130px" name="gender" [(ngModel)]="userParams.gender">
+                <option *ngFor="let gender of genderList" [value]="gender.value">
+                    {{gender.displayName}}
+                </option>
+            </select>
+        </div>
+
+        <button type="submit">Apply filters</button>
+        <button type="button" (click)="resetFilters()">Reset Filters</button>
+    </form>
+</div>
+
 <mat-grid-list cols="4" rowHeight="2:4" *ngIf="members">
     <mat-grid-tile *ngFor="let member of members">
         <app-member-card [member]="member"></app-member-card>

@@ -18,6 +18,10 @@ export class MemberListComponent implements OnInit {
   pagination: Pagination | null = null;
   userParams: UserParams | null = null;
   user: User | null = null;
+  genderList = [
+    { value: 'Male', displayName: 'Males' },
+    { value: 'Female', displayName: 'Females' },
+  ];
 
   constructor(
     private membersService: MembersService,
@@ -46,6 +50,8 @@ export class MemberListComponent implements OnInit {
   }
 
   resetFilters() {
+    console.log(this.userParams);
     this.userParams = new UserParams(this.user!);
+    this.loadMembers();
   }
 }
