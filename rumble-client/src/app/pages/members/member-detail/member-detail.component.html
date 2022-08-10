@@ -16,7 +16,8 @@
 
                         <mat-form-field class="example-full-width" appearance="fill" width="100%">
                             <p>Location: <strong>{{member.country}} - {{member.city}}</strong></p>
-                            <input matInput [disabled]="true" placeholder="" />
+                            <input matInput [disabled]="true" placeholder="" [(ngModel)]="member.gender"
+                                [value]="member.gender" name="gender" />
                         </mat-form-field>
                         <br>
                     </mat-card-actions>
