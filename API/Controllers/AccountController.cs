@@ -52,7 +52,8 @@ public class AccountController : ControllerBase
         {
             Token = _tokenService.CreateToken(user),
             Username = user.UserName,
-            KnownAs = user.KnownAs
+            KnownAs = user.KnownAs,
+            Gender = user.Gender
         });
     }
 
@@ -89,7 +90,9 @@ public class AccountController : ControllerBase
         {
             Token = _tokenService.CreateToken(user),
             Username = user.UserName,
-            PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url
+            PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url,
+            KnownAs = user.KnownAs,
+            Gender = user.Gender
         });
     }
 

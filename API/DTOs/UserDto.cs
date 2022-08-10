@@ -21,7 +21,12 @@ public class UserDto
     public string PhotoUrl { get; set; }
 
     /// <summary>
-    /// Know as to be displayed in the nav bar
+    /// Knows as to be displayed in the nav bar
     /// </summary>
     public string KnownAs { get; set; }
+
+    /// <summary>
+    /// Gender of the activited user
+    /// </summary>
+    public string Gender { get; set; }
 }

@@ -204,7 +204,12 @@
         </member>
         <member name="P:API.DTOs.UserDto.KnownAs">
             <summary>
-            Know as to be displayed in the nav bar
+            Knows as to be displayed in the nav bar
+            </summary>
+        </member>
+        <member name="P:API.DTOs.UserDto.Gender">
+            <summary>
+            Gender of the activited user
             </summary>
         </member>
     </members>

@@ -30,6 +30,12 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status200OK)]
     public async Task<ActionResult<MemberDto>> GetUsers([FromQuery] UserParams userParams)
     {
+        var user = await _userRepository.GetUserByNameAsync(User.GetUsername());
+        userParams.CurrentUsername = user.UserName;
+
+        if (string.IsNullOrEmpty(userParams.Gender))
+            userParams.Gender = user.Gender == "Male" ? "Female" : "Male";
+
         var users = await _userRepository.GetMembersAsync(userParams);
 
         Response.AddPaginationHeader(
