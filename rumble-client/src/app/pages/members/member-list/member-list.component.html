@@ -3,26 +3,34 @@
 </div>
 
 <div>
-    <form #form="ngForm" *ngIf="userParams" (ngSubmit)="loadMembers()" autocomplete="off">
-        <div>
-            <label for="">Age from: </label>
-            <input type="number" style="width: 70px" name="minAge" [(ngModel)]="userParams.minAge" />
-        </div>
-        <div>
-            <label for="">Age to: </label>
-            <input type="number" style="width: 70px" name="maxAge" [(ngModel)]="userParams.maxAge" />
-        </div>
-        <div>
-            <label for="">Show: </label>
-            <select name="gender" style="width:130px" name="gender" [(ngModel)]="userParams.gender">
-                <option *ngFor="let gender of genderList" [value]="gender.value">
+    <form #form="ngForm" *ngIf="userParams && members" (ngSubmit)="loadMembers()" autocomplete="off">
+
+        <div style="padding-left: 396px;">
+            <mat-form-field class="example-full-width" style="padding-right: 1rem;" appearance="fill">
+                <mat-label>Age from: </mat-label>
+                <input matInput type="number" name="minAge" [(ngModel)]="userParams.minAge" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Age to: </mat-label>
+                <input matInput type="number" name="maxAge" [(ngModel)]="userParams.maxAge" />
+            </mat-form-field>
+            <br>
+
+            <mat-label>Show: </mat-label>
+            <mat-select style="width: 350px" name="gender" [(ngModel)]="userParams.gender">
+                <mat-option *ngFor="let gender of genderList" [value]="gender.value">
                     {{gender.displayName}}
-                </option>
-            </select>
+                </mat-option>
+            </mat-select>
+
         </div>
 
-        <button type="submit">Apply filters</button>
-        <button type="button" (click)="resetFilters()">Reset Filters</button>
+        <div style="padding-left: 493px; padding-top:21px">
+            <button mat-raised-button color="primary" style="margin-right: 1rem;" type="submit">Apply filters</button>
+            <button mat-raised-button color="warn" (click)="resetFilters()">Reset Filters</button>
+        </div>
+
     </form>
 </div>
 
