@@ -24,8 +24,13 @@ public class UserRepository : IUserRepository
         query = query.Where(u => u.UserName != userParams.CurrentUsername);
         query = query.Where(u => u.Gender.Equals(userParams.Gender));
 
+        var minDateOfBirth = DateTime.UtcNow.AddYears(-userParams.MaxAge - 1); //-101
+        var maxDateOfBirth = DateTime.UtcNow.AddYears(-userParams.MinAge - 1); //14
+
+        query = query.Where(u => u.DateOfBirth <= maxDateOfBirth && u.DateOfBirth >= minDateOfBirth);
+
         return await PagedList<MemberDto>.CreateAsync(
-            query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider),
+            query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).AsNoTracking(),
             userParams.PageNumber,
             userParams.PageSize);
     }

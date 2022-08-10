@@ -12,4 +12,7 @@ public class UserParams
 
     public string? CurrentUsername { get; set; }
     public string? Gender { get; set; }
+
+    public int MinAge { get; init; } = 15;
+    public int MaxAge { get; init; } = 100;
 }
