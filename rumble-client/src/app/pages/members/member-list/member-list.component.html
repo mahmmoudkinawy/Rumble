@@ -31,11 +31,12 @@
             <button mat-raised-button color="warn" (click)="resetFilters()">Reset Filters</button>
 
             <div *ngIf="userParams" style="padding-top: 30px;">
-                <mat-radio-group aria-label="Select an option" [(ngModel)]="userParams.orderBy">
-                    <mat-radio-button name="orderBy" style="padding-right: 15px" (click)="loadMembers()">
+                <mat-radio-group>
+                    <mat-radio-button name="orderBy" [(ngModel)]="userParams.orderBy" style="padding-right: 15px"
+                        (click)="loadMembers()">
                         Last
                         Active</mat-radio-button>
-                    <mat-radio-button name="orderBy" (click)="loadMembers()">
+                    <mat-radio-button name="orderBy" [(ngModel)]="userParams.orderBy" (click)="loadMembers()">
                         Newest Members
                     </mat-radio-button>
                 </mat-radio-group>
