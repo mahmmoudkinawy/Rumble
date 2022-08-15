@@ -15,4 +15,6 @@ public class UserParams
 
     public int MinAge { get; init; } = 15;
     public int MaxAge { get; init; } = 100;
+
+    public string OrderBy { get; init; } = "lastActive";
 }
