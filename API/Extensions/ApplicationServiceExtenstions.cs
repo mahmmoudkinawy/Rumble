@@ -12,6 +12,8 @@ public static class ApplicationServiceExtenstions
 
         services.AddScoped<IPhotoService, PhotoService>();
 
+        services.AddScoped<LogUserActivity>();
+
         services.Configure<CloudinarySettings>(config.GetSection("CloudinarySettings"));
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

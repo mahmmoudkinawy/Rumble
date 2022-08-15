@@ -3,6 +3,7 @@
 /// <summary>
 /// Users Controller for getting users details
 /// </summary>
+[ServiceFilter(typeof(LogUserActivity))]
 [ApiController]
 [Route("api/users")]
 [Authorize]
@@ -77,7 +78,7 @@ public class UsersController : ControllerBase
 
         _userRepository.Update(user);
 
-        if (await _userRepository.SaveAllChangeAsync()) return NoContent();
+        if (await _userRepository.SaveAllChangesAsync()) return NoContent();
 
         return BadRequest("Problem Updating User");
     }
@@ -107,7 +108,7 @@ public class UsersController : ControllerBase
 
         user.Photos.Add(photo);
 
-        if (await _userRepository.SaveAllChangeAsync())
+        if (await _userRepository.SaveAllChangesAsync())
             return CreatedAtRoute(
                 nameof(GetUser),
                 new { username = user.UserName },
@@ -140,7 +141,7 @@ public class UsersController : ControllerBase
             currentPhoto.IsMain = false;
             photo.IsMain = true;
 
-            await _userRepository.SaveAllChangeAsync();
+            await _userRepository.SaveAllChangesAsync();
             return NoContent();
         }
 
@@ -174,7 +175,7 @@ public class UsersController : ControllerBase
 
         user.Photos.Remove(photo);
 
-        if (await _userRepository.SaveAllChangeAsync()) return Ok();
+        if (await _userRepository.SaveAllChangesAsync()) return Ok();
 
         return BadRequest("Problem deleting the photo");
     }

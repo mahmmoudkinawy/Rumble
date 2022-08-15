@@ -65,6 +65,6 @@ public class UserRepository : IUserRepository
         _context.Entry(user).State = EntityState.Modified;
     }
 
-    public async Task<bool> SaveAllChangeAsync()
+    public async Task<bool> SaveAllChangesAsync()
         => await _context.SaveChangesAsync() > 0;
 }

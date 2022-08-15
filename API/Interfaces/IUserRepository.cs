@@ -9,5 +9,5 @@ public interface IUserRepository
     void Update(UserEntity user);
 
     //I know it's a bad practice to do it like that! because of Single Responsibility
-    Task<bool> SaveAllChangeAsync();
+    Task<bool> SaveAllChangesAsync();
 }

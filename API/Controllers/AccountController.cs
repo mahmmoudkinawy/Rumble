@@ -5,6 +5,7 @@ namespace API.Controllers;
 /// <summary>
 /// Account Controller for Authentication the users
 /// </summary>
+[ServiceFilter(typeof(LogUserActivity))]
 [Route("api/account")]
 [ApiController]
 public class AccountController : ControllerBase
