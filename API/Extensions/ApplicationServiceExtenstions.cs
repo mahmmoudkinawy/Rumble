@@ -18,7 +18,8 @@ public static class ApplicationServiceExtenstions
 
         services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
-        services.AddControllers().AddXmlSerializerFormatters();
+        services.AddControllers(options => options.Filters.Add(new LogUserActivity()))
+            .AddXmlSerializerFormatters();
 
         services.AddDbContext<RumbleDbContext>(options =>
             options.UseNpgsql(config.GetConnectionString("DefaultConnection")));

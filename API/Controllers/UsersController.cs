@@ -3,7 +3,6 @@
 /// <summary>
 /// Users Controller for getting users details
 /// </summary>
-[ServiceFilter(typeof(LogUserActivity))]
 [ApiController]
 [Route("api/users")]
 [Authorize]

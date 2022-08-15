@@ -5,9 +5,8 @@ namespace API.Controllers;
 /// <summary>
 /// Account Controller for Authentication the users
 /// </summary>
-[ServiceFilter(typeof(LogUserActivity))]
-[Route("api/account")]
 [ApiController]
+[Route("api/account")]
 public class AccountController : ControllerBase
 {
     private readonly RumbleDbContext _context;
