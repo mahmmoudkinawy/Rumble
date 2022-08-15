@@ -42,6 +42,7 @@ export class MemberListComponent implements OnInit {
       this.members = response.result;
       this.pagination = response.pagination;
     });
+    console.log(this.userParams?.orderBy);
   }
 
   pageChanged(event: any) {

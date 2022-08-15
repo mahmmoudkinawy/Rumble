@@ -29,6 +29,17 @@
         <div style="padding-left: 493px; padding-top:21px">
             <button mat-raised-button color="primary" style="margin-right: 1rem;" type="submit">Apply filters</button>
             <button mat-raised-button color="warn" (click)="resetFilters()">Reset Filters</button>
+
+            <div *ngIf="userParams" style="padding-top: 30px;">
+                <mat-radio-group aria-label="Select an option" [(ngModel)]="userParams.orderBy">
+                    <mat-radio-button name="orderBy" style="padding-right: 15px" (click)="loadMembers()">
+                        Last
+                        Active</mat-radio-button>
+                    <mat-radio-button name="orderBy" (click)="loadMembers()">
+                        Newest Members
+                    </mat-radio-button>
+                </mat-radio-group>
+            </div>
         </div>
 
     </form>
