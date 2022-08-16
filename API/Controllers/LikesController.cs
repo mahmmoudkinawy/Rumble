@@ -1,5 +1,8 @@
 ﻿namespace API.Controllers;
 
+/// <summary>
+/// Likes Controller for dealing with likes!!
+/// </summary>
 [Route("api/[controller]")]
 [ApiController]
 [Authorize]
@@ -14,6 +17,11 @@ public class LikesController : ControllerBase
         _userRepository = userRepository;
     }
 
+    /// <summary>
+    /// This is end point add a like to a particular user using username!
+    /// </summary>
+    /// <param name="username"></param>
+    /// <returns>Nothing</returns>
     [HttpPost("{username}")]
     public async Task<ActionResult> AddLike([FromRoute] string username)
     {
@@ -42,6 +50,11 @@ public class LikesController : ControllerBase
         return BadRequest("Problem to like the User");
     }
 
+    /// <summary>
+    /// Returns all likes based on the logged in user!
+    /// </summary>
+    /// <param name="predicate">liked or likedBy</param>
+    /// <returns></returns>
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<LikeDto>>> GetUserLikes(string predicate)
     {

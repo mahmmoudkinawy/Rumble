@@ -1,4 +1,8 @@
 ﻿namespace API.DTOs;
+
+/// <summary>
+/// Like Dto to be returned to the consumer!
+/// </summary>
 public class LikeDto
 {
     public int Id { get; set; }
