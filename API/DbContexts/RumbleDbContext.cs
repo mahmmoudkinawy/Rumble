@@ -6,6 +6,7 @@ public class RumbleDbContext : DbContext
 
     public DbSet<UserEntity> Users { get; set; }
     public DbSet<PhotoEntity> Photos { get; set; }
+    public DbSet<UserLikeEntity> Likes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

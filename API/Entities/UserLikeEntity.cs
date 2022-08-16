@@ -1,6 +1,4 @@
 ﻿namespace API.Entities;
-
-[Table("UserLike")]
 public class UserLikeEntity
 {
     public UserEntity SourceUser { get; set; }
