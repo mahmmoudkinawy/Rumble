@@ -2,7 +2,7 @@
     <mat-card-header>
         <img mat-card-avatar class="example-header-image" [src]="member.photoUrl" />
         <mat-card-title>{{member.username}}</mat-card-title>
-        <mat-card-subtitle>{{member.gender}} - {{member.age}} years</mat-card-subtitle>
+        <mat-card-subtitle>{{member.gender}} {{member.age}} years</mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image [src]="member.photoUrl ||'./assets/images/user.png' " [alt]="member.knownAs">
     <mat-card-content>

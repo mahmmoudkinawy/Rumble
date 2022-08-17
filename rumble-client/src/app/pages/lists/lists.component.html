@@ -1,1 +1,17 @@
-<p>lists works!</p>
+<mat-card style="text-align: center;">
+    <h2>{{predicate === 'liked' ? 'Members I like' : 'Member who like me'}}</h2>
+    <mat-radio-group>
+        <mat-radio-button name="predicate" [(ngModel)]="predicate" value="liked" (click)="loadLikes()">Members I like
+        </mat-radio-button>
+        <mat-radio-button name="predicate" [(ngModel)]="predicate" value="likedBy" (click)="loadLikes()">Members who
+            like Me
+        </mat-radio-button>
+    </mat-radio-group>
+</mat-card>
+
+
+<mat-grid-list cols="4" rowHeight="2:4" *ngIf="members">
+    <mat-grid-tile *ngFor="let member of members">
+        <app-member-card *ngIf="member" [member]="member"></app-member-card>
+    </mat-grid-tile>
+</mat-grid-list>
