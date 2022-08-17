@@ -53,6 +53,25 @@
             </summary>
             <returns>will always return 500</returns>
         </member>
+        <member name="T:API.Controllers.LikesController">
+            <summary>
+            Likes Controller for dealing with likes!!
+            </summary>
+        </member>
+        <member name="M:API.Controllers.LikesController.AddLike(System.String)">
+            <summary>
+            This is end point add a like to a particular user using username!
+            </summary>
+            <param name="username"></param>
+            <returns>Nothing</returns>
+        </member>
+        <member name="M:API.Controllers.LikesController.GetUserLikes(System.String)">
+            <summary>
+            Returns all likes based on the logged in user!
+            </summary>
+            <param name="predicate">liked or likedBy</param>
+            <returns></returns>
+        </member>
         <member name="T:API.Controllers.UsersController">
             <summary>
             Users Controller for getting users details
@@ -100,6 +119,11 @@
             </summary>
             <param name="photoId">Photo Id to be deleted</param>
             <returns>Returns an object</returns>
+        </member>
+        <member name="T:API.DTOs.LikeDto">
+            <summary>
+            Like Dto to be returned to the consumer!
+            </summary>
         </member>
         <member name="T:API.DTOs.LoginDto">
             <summary>

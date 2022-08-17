@@ -16,7 +16,7 @@
         <div class="example-button-row">
             <button mat-button><span class="material-icons md-36"
                     routerLink="/members/{{member.username}}">person</span></button>
-            <button mat-button><span class="material-icons md-36">favorite</span></button>
+            <button mat-button><span class="material-icons md-36" (click)="addLike(member)">favorite</span></button>
             <button mat-button><span class="material-icons md-36">send</span></button>
         </div>
     </mat-card-actions>
