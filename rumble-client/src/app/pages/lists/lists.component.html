@@ -15,3 +15,10 @@
         <app-member-card *ngIf="member" [member]="member"></app-member-card>
     </mat-grid-tile>
 </mat-grid-list>
+
+
+<div style="padding-right: 439px;" *ngIf="pagination">
+    <mat-paginator [length]="pagination.totalItems" [(ngModel)]="pagination.currentPage" (click)="pageChanged($event)"
+        [pageSize]="pagination.itemsPerPage">
+    </mat-paginator>
+</div>
