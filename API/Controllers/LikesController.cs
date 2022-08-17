@@ -54,7 +54,7 @@ public class LikesController : ControllerBase
     /// Returns all likes based on the logged in user!
     /// </summary>
     /// <param name="predicate">liked or likedBy</param>
-    /// <returns></returns>
+    /// <returns>Pagination likes! look at the headers of the returned request</returns>
     [HttpGet]
     public async Task<ActionResult<IReadOnlyList<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
     {
