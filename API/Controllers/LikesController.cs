@@ -56,9 +56,17 @@ public class LikesController : ControllerBase
     /// <param name="predicate">liked or likedBy</param>
     /// <returns></returns>
     [HttpGet]
-    public async Task<ActionResult<IReadOnlyList<LikeDto>>> GetUserLikes(string predicate)
+    public async Task<ActionResult<IReadOnlyList<LikeDto>>> GetUserLikes([FromQuery] LikesParams likesParams)
     {
-        var users = await _likesRepository.GetUserLikes(predicate, User.GetUserById());
+        likesParams.UserId = User.GetUserById();
+
+        var users = await _likesRepository.GetUserLikes(likesParams);
+
+        Response.AddPaginationHeader(
+            users.CurrentPage,
+            users.PageSize, 
+            users.TotalPages,
+            users.TotalCount);
 
         return Ok(users);
     }

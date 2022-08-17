@@ -65,7 +65,7 @@
             <param name="username"></param>
             <returns>Nothing</returns>
         </member>
-        <member name="M:API.Controllers.LikesController.GetUserLikes(System.String)">
+        <member name="M:API.Controllers.LikesController.GetUserLikes(API.Helpers.LikesParams)">
             <summary>
             Returns all likes based on the logged in user!
             </summary>
