@@ -4,13 +4,17 @@ public class AutoMapperProfiles : Profile
     public AutoMapperProfiles()
     {
         CreateMap<UserEntity, MemberDto>()
-            .ForMember(d => d.Age, o => o.MapFrom(u => u.DateOfBirth.CalculateAge()))
-            .ForMember(d => d.PhotoUrl, o => o.MapFrom(u => u.Photos.FirstOrDefault(p => p.IsMain).Url));
+            .ForMember(dest => dest.Age, opt => opt.MapFrom(u => u.DateOfBirth.CalculateAge()))
+            .ForMember(dest => dest.PhotoUrl, opt => opt.MapFrom(u => u.Photos.FirstOrDefault(p => p.IsMain).Url));
         
         CreateMap<PhotoEntity, PhotoDto>();
 
         CreateMap<MemberUpdateDto, UserEntity>();
 
         CreateMap<RegisterDto, UserEntity>().ReverseMap();
+
+        CreateMap<MessageEntity, MessageDto>()
+            .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(u => u.Sender.Photos.FirstOrDefault(p => p.IsMain).Url))
+            .ForMember(dest => dest.RecipientPhotoUrl, opt => opt.MapFrom(u => u.Recipient.Photos.FirstOrDefault(p => p.IsMain).Url));
     }
 }

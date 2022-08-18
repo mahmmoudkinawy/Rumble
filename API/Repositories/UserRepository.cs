@@ -52,6 +52,10 @@ public class UserRepository : IUserRepository
             .Include(p => p.Photos)
             .FirstOrDefaultAsync(u => u.UserName == username);
     }
+    public async Task<UserEntity> GetUserByUsernameAsync(string username)
+    {
+        return await _context.Users.FirstOrDefaultAsync(u => u.UserName.Equals(username));
+    }
 
     public async Task<IEnumerable<UserEntity>> GetUsersAsync()
     {
@@ -67,4 +71,5 @@ public class UserRepository : IUserRepository
 
     public async Task<bool> SaveAllChangesAsync()
         => await _context.SaveChangesAsync() > 0;
+
 }
