@@ -47,8 +47,39 @@ public class MessageRepository : IMessageRepository
             messageParams.PageSize);
     }
 
-    public async Task<IEnumerable<MessageDto>> GetMessageThreadAsync()
+    public async Task<IEnumerable<MessageDto>> GetMessageThreadAsync(
+        string currentUsername,
+        string recipientUsername)
     {
-        throw new NotImplementedException();
+        var messages = await _context.Messages
+            .Include(u => u.Sender)
+                .ThenInclude(p => p.Photos)
+            .Include(u => u.Recipient)
+                .ThenInclude(p => p.Photos)
+            .Where(
+                    m => m.Recipient.UserName.Equals(currentUsername) &&
+                    m.Sender.UserName.Equals(recipientUsername) ||
+                    m.Recipient.UserName.Equals(recipientUsername) &&
+                    m.Recipient.UserName.Equals(currentUsername)
+                )
+            .OrderBy(m => m.MessageSent)
+            .ToListAsync();
+
+        var unreadMessages = messages.Where(
+            m => m.DateRead == null
+            &&
+            m.Recipient.UserName == currentUsername).ToList();
+
+        if (unreadMessages.Any())
+        {
+            foreach (var message in unreadMessages)
+            {
+                message.DateRead = DateTime.UtcNow;
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
+        return _mapper.Map<IEnumerable<MessageDto>>(unreadMessages);
     }
 }
