@@ -17,6 +17,10 @@ public class UserEntity
     public string Country { get; set; }
 
     public ICollection<PhotoEntity> Photos { get; set; }
+
     public ICollection<UserLikeEntity> LikedByUsers { get; set; }
     public ICollection<UserLikeEntity> LikedUsers { get; set; }
+
+    public ICollection<MessageEntity> MessagesSent { get; set; }
+    public ICollection<MessageEntity> MessagesReceived { get; set; }
 }
