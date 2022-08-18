@@ -50,4 +50,21 @@ public class MessagesController : ControllerBase
 
         return Ok(_mapper.Map<MessageDto>(message));
     }
+
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageForUser(
+        [FromQuery] MessageParams messageParams)
+    {
+        messageParams.Username = User.GetUsername();
+
+        var messages = await _messageRepository.GetMessagesForUserAsync(messageParams);
+
+        Response.AddPaginationHeader(
+            messages.CurrentPage,
+            messages.PageSize,
+            messages.TotalPages,
+            messages.TotalCount);
+
+        return Ok(messages);
+    }
 }
