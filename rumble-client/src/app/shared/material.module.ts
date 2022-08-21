@@ -20,12 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTableModule } from '@angular/material/table';
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { FileUploadModule } from 'ng2-file-upload';
+import { TimeagoModule } from 'ngx-timeago';
 
 const MaterialComponents = [
   MatSliderModule,
@@ -46,6 +48,7 @@ const MaterialComponents = [
   NgxSpinnerModule,
   MatPaginatorModule,
   MatRadioModule,
+  MatTableModule,
 ];
 
 @NgModule({
@@ -55,12 +58,14 @@ const MaterialComponents = [
     FlexLayoutModule,
     NgxGalleryModule,
     FileUploadModule,
+    TimeagoModule.forRoot(),
   ],
   exports: [
     MaterialComponents,
     FlexLayoutModule,
     NgxGalleryModule,
     FileUploadModule,
+    TimeagoModule,
   ],
 })
 export class MaterialModule {}

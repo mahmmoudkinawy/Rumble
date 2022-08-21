@@ -1,3 +1,43 @@
-<pre>
-{{messages | json}}
-</pre>
+<div class="container">
+    <h2 *ngIf="messages?.length === 0">No messages yet.</h2>
+    <ul class="responsive-table" *ngIf="messages">
+        <li class="table-header">
+            <div class="col col-1">Message</div>
+            <div class="col col-2">From / To</div>
+            <div class="col col-3">Sent / Received</div>
+            <div class="col col-4"></div>
+        </li>
+        <li class="table-row" *ngFor="let message of messages">
+            <div class="col col-1" data-label="Job Id">{{message.content}}</div>
+            <div class="col col-2" data-label="Customer Name">
+                <ng-container *ngIf="container === 'Outbox'">
+                    <img style="width: 50px;" [src]="message.recipientPhotoUrl || './assets/photo/user.png'"
+                        [alt]="message.recipientUsername" />
+                    <br>
+                    <strong>{{message.recipientUsername | titlecase}}</strong>
+                </ng-container>
+                <ng-container *ngIf="container !== 'Outbox'">
+                    <img style="width: 50px;" [src]="message.senderPhotoUrl || './assets/photo/user.png'"
+                        [alt]="message.senderUsername" />
+                    <br>
+
+                    <strong>{{message.senderUsername | titlecase}}</strong>
+                </ng-container>
+            </div>
+            <div class="col col-3" data-label="Amount">
+                {{message.messageSent | timeago}}
+            </div>
+            <div class="col col-4" data-label="Payment Status">
+                <button mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div style="padding-right: 439px;" *ngIf="pagination">
+    <mat-paginator [length]="pagination.totalItems" [(ngModel)]="pagination.currentPage" (click)="pageChanged($event)"
+        [pageSize]="pagination.itemsPerPage">
+    </mat-paginator>
+</div>

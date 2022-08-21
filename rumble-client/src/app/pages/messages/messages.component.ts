@@ -4,6 +4,14 @@ import { MessageService } from 'src/app/services/message.service';
 import { Message } from 'src/app/models/message';
 import { Pagination } from 'src/app/models/pagination';
 
+export interface Food {
+  calories: number;
+  carbs: number;
+  fat: number;
+  name: string;
+  protein: number;
+}
+
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
