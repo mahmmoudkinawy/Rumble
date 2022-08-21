@@ -43,12 +43,13 @@
                                 [(ngModel)]="member.interests" name="interests"></textarea>
                         </mat-form-field>
                     </mat-tab>
-                    <mat-tab label="Interests"> Interests goes here</mat-tab>
                     <mat-tab label="Photos">
                         <ngx-gallery style="display: inline-block; margin-bottom: 20px;" [options]="galleryOptions"
                             [images]="galleryImages" class="ngx-gallery"></ngx-gallery>
                     </mat-tab>
-                    <mat-tab label="Messages"> Messages goes here</mat-tab>
+                    <mat-tab label="Messages">
+                        <app-member-messages [username]="member.username"></app-member-messages>
+                    </mat-tab>
                 </mat-tab-group>
             </div>
         </form>

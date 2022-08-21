@@ -26,6 +26,7 @@ import { ErrorsInterceptor } from './interceptors/errors.interceptor';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.component';
 import { InputTextComponent } from './forms/input-text/input-text.component';
+import { MemberMessagesComponent } from './pages/member-messages/member-messages.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { InputTextComponent } from './forms/input-text/input-text.component';
     MemberEditComponent,
     PhotoEditorComponent,
     InputTextComponent,
+    MemberMessagesComponent,
   ],
   imports: [
     BrowserModule,
