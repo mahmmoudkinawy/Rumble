@@ -13,7 +13,7 @@ public static class IdentityServiceExtenstions
             .AddRoles<RoleEntity>()
             .AddRoleManager<RoleManager<RoleEntity>>()
             .AddSignInManager<SignInManager<UserEntity>>()
-            .AddRoleValidator<RoleEntity>()
+            .AddRoleValidator<RoleValidator<RoleEntity>>()
             .AddEntityFrameworkStores<RumbleDbContext>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

@@ -28,8 +28,6 @@ app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
-await SeedFakeData();
-
 app.UseCors(CorsConstants.CorsPolicyName);
 
 app.UseAuthentication();
@@ -38,11 +36,19 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
-
-async Task SeedFakeData()
+using var scope = app.Services.CreateScope();
+var services = scope.ServiceProvider;
+try
 {
-    using var scope = app.Services.CreateScope();
-    var seed = scope.ServiceProvider.GetRequiredService<ISeedService>();
-    await seed.SeedData();
+    var dbContext = services.GetRequiredService<RumbleDbContext>();
+    var userManger = services.GetRequiredService<UserManager<UserEntity>>();
+    await dbContext.Database.MigrateAsync();
+    await Seed.SeedUsers(dbContext, userManger);
 }
+catch (Exception ex)
+{
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    logger.LogError(ex, "An orrer occured while migrations");
+}
+
+await app.RunAsync();

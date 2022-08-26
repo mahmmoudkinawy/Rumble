@@ -6,8 +6,6 @@ public static class ApplicationServiceExtenstions
     {
         services.AddScoped<ITokenService, TokenService>();
 
-        services.AddScoped<ISeedService, SeedService>();
-
         services.AddScoped<IUserRepository, UserRepository>();
 
         services.AddScoped<IPhotoService, PhotoService>();
