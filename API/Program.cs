@@ -42,8 +42,9 @@ try
 {
     var dbContext = services.GetRequiredService<RumbleDbContext>();
     var userManger = services.GetRequiredService<UserManager<UserEntity>>();
+    var roleManager = services.GetRequiredService<RoleManager<RoleEntity>>();
     await dbContext.Database.MigrateAsync();
-    await Seed.SeedUsers(dbContext, userManger);
+    await Seed.SeedUsers(dbContext, userManger, roleManager);
 }
 catch (Exception ex)
 {

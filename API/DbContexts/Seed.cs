@@ -3,7 +3,8 @@ public static class Seed
 {
     public static async Task SeedUsers(
         RumbleDbContext context,
-        UserManager<UserEntity> userManager)
+        UserManager<UserEntity> userManager,
+        RoleManager<RoleEntity> roleManager)
     {
         if (await userManager.Users.AnyAsync()) return;
 
@@ -29,6 +30,18 @@ public static class Seed
         {
             context.Photos.Add(photoEntityFaker);
             await context.SaveChangesAsync();
+        }
+
+        var roles = new List<RoleEntity>
+        {
+            new RoleEntity { Name="Admin" },
+            new RoleEntity { Name="Moderator" },
+            new RoleEntity { Name="Member" }
+        };
+
+        foreach (var role in roles)
+        {
+            await roleManager.CreateAsync(role);
         }
     }
 }
