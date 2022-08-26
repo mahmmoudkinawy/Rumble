@@ -9,16 +9,19 @@ namespace API.Controllers;
 [Route("api/account")]
 public class AccountController : ControllerBase
 {
-    private readonly RumbleDbContext _context;
+    private readonly UserManager<UserEntity> _userManager;
+    private readonly SignInManager<UserEntity> _signInManager;
     private readonly ITokenService _tokenService;
     private readonly IMapper _mapper;
 
     public AccountController(
-        RumbleDbContext context,
+        UserManager<UserEntity> userManager,
+        SignInManager<UserEntity> signInManager,
         ITokenService tokenService,
         IMapper mapper)
     {
-        _context = context;
+        _userManager = userManager;
+        _signInManager = signInManager;
         _tokenService = tokenService;
         _mapper = mapper;
     }
@@ -35,18 +38,14 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
     {
-        if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
+        if(await _userManager.Users.AnyAsync(u => u.UserName.Equals(registerDto.Username)))
+                return BadRequest("Username is taken");
 
         var user = _mapper.Map<UserEntity>(registerDto);
 
-        using var hmac = new HMACSHA512();
+        var result = await _userManager.CreateAsync(user, registerDto.Password);
 
-        user.UserName = registerDto.Username.ToLower();
-        user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-        user.PasswordSalt = hmac.Key;
-
-        _context.Users.Add(user);
-        await _context.SaveChangesAsync();
+        if (!result.Succeeded) return BadRequest(result.Errors);
 
         return Ok(new UserDto
         {
@@ -68,23 +67,15 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
     {
-        var user = await _context.Users
+        var user = await _userManager.Users
             .Include(p => p.Photos)
             .FirstOrDefaultAsync(u => u.UserName == loginDto.Username);
 
         if (user == null) return Unauthorized("Username does not found");
 
-        using var hmac = new HMACSHA512(user.PasswordSalt);
+        var result = await _signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
 
-        var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(loginDto.Password));
-
-        for (int i = 0; i < computedHash.Length; i++)
-        {
-            if (computedHash[i] != user.PasswordHash[i])
-            {
-                return Unauthorized("Invalid password");
-            }
-        }
+        if (!result.Succeeded) return Unauthorized();
 
         return Ok(new UserDto
         {
@@ -94,11 +85,6 @@ public class AccountController : ControllerBase
             KnownAs = user.KnownAs,
             Gender = user.Gender
         });
-    }
-
-    private async Task<bool> UserExists(string username)
-    {
-        return await _context.Users.AnyAsync(u => u.UserName == username.ToLower());
     }
 
 }

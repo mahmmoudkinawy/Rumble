@@ -4,6 +4,17 @@ public static class IdentityServiceExtenstions
     public static IServiceCollection AddIdentityServices(this IServiceCollection services,
         IConfiguration config)
     {
+        services.AddIdentityCore<UserEntity>(options =>
+        {
+            options.Password.RequireNonAlphanumeric = false;
+            options.SignIn.RequireConfirmedAccount = false;
+            options.SignIn.RequireConfirmedPhoneNumber = false;
+        })
+            .AddRoles<RoleEntity>()
+            .AddRoleManager<RoleManager<RoleEntity>>()
+            .AddSignInManager<SignInManager<UserEntity>>()
+            .AddRoleValidator<RoleEntity>()
+            .AddEntityFrameworkStores<RumbleDbContext>();
 
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>

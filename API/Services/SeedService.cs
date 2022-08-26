@@ -25,9 +25,7 @@ public class SeedService : ISeedService
             .RuleFor(u => u.Interests, u => u.Lorem.Word())
             .RuleFor(u => u.Introduction, u => u.Lorem.Text())
             .RuleFor(u => u.City, u => u.Address.City())
-            .RuleFor(u => u.Country, u => u.Address.Country())
-            .RuleFor(u => u.PasswordHash, u => hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")))
-            .RuleFor(u => u.PasswordSalt, u => hmac.Key);
+            .RuleFor(u => u.Country, u => u.Address.Country());
 
         var photoFakerBogus = new Faker<PhotoEntity>()
             .RuleFor(p => p.Url, p => p.Person.Avatar)

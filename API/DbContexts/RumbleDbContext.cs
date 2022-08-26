@@ -1,10 +1,12 @@
 ﻿namespace API.DbContexts;
-public class RumbleDbContext : DbContext
+public class RumbleDbContext : IdentityDbContext<
+    UserEntity, RoleEntity, int, IdentityUserClaim<int>,
+    IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>,
+    IdentityUserToken<int>>
 {
     public RumbleDbContext(DbContextOptions<RumbleDbContext> options) : base(options)
     { }
 
-    public DbSet<UserEntity> Users { get; set; }
     public DbSet<PhotoEntity> Photos { get; set; }
     public DbSet<UserLikeEntity> Likes { get; set; }
     public DbSet<MessageEntity> Messages { get; set; }
@@ -12,6 +14,18 @@ public class RumbleDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<UserEntity>()
+            .HasMany(u => u.UserRoles)
+            .WithOne(u => u.User)
+            .HasForeignKey(u => u.UserId)
+            .IsRequired();
+
+        modelBuilder.Entity<RoleEntity>()
+            .HasMany(u => u.UserRoles)
+            .WithOne(u => u.Role)
+            .HasForeignKey(u => u.RoleId)
+            .IsRequired();
 
         modelBuilder.Entity<UserLikeEntity>()
             .HasKey(k => new { k.SourceUserId, k.LikedUserId });

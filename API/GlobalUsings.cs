@@ -29,3 +29,5 @@ global using CloudinaryDotNet.Actions;
 global using CloudinaryDotNet;
 global using Microsoft.Extensions.Options;
 global using Microsoft.AspNetCore.Mvc.Filters;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
