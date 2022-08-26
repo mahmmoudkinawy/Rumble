@@ -2,18 +2,27 @@
 public class TokenService : ITokenService
 {
     private readonly SymmetricSecurityKey _key;
-    public TokenService(IConfiguration config)
+    private readonly UserManager<UserEntity> _userManager;
+
+    public TokenService(
+        IConfiguration config,
+        UserManager<UserEntity> userManager)
     {
         _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"]));
+        _userManager = userManager;
     }
 
-    public string CreateToken(UserEntity user)
+    public async Task<string> CreateTokenAsync(UserEntity user)
     {
-        var claims = new[]
+        var claims = new List<Claim>
         {
             new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName),
             new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString())
         };
+
+        var roles = await _userManager.GetRolesAsync(user);
+
+        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
 
         var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256Signature);
 

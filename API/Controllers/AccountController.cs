@@ -1,6 +1,4 @@
-﻿using System.Security.Cryptography;
-
-namespace API.Controllers;
+﻿namespace API.Controllers;
 
 /// <summary>
 /// Account Controller for Authentication the users
@@ -38,8 +36,8 @@ public class AccountController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
     {
-        if(await _userManager.Users.AnyAsync(u => u.UserName.Equals(registerDto.Username)))
-                return BadRequest("Username is taken");
+        if (await _userManager.Users.AnyAsync(u => u.UserName.Equals(registerDto.Username)))
+            return BadRequest("Username is taken");
 
         var user = _mapper.Map<UserEntity>(registerDto);
 
@@ -47,9 +45,13 @@ public class AccountController : ControllerBase
 
         if (!result.Succeeded) return BadRequest(result.Errors);
 
+        var roleList = await _userManager.AddToRoleAsync(user, UserConstants.Member);
+
+        if (!roleList.Succeeded) return BadRequest(result.Errors);
+
         return Ok(new UserDto
         {
-            Token = _tokenService.CreateToken(user),
+            Token = await _tokenService.CreateTokenAsync(user),
             Username = user.UserName,
             KnownAs = user.KnownAs,
             Gender = user.Gender
@@ -69,7 +71,7 @@ public class AccountController : ControllerBase
     {
         var user = await _userManager.Users
             .Include(p => p.Photos)
-            .FirstOrDefaultAsync(u => u.UserName == loginDto.Username);
+            .FirstOrDefaultAsync(u => u.UserName.Equals(loginDto.Username));
 
         if (user == null) return Unauthorized("Username does not found");
 
@@ -79,7 +81,7 @@ public class AccountController : ControllerBase
 
         return Ok(new UserDto
         {
-            Token = _tokenService.CreateToken(user),
+            Token = await _tokenService.CreateTokenAsync(user),
             Username = user.UserName,
             PhotoUrl = user.Photos.FirstOrDefault(p => p.IsMain)?.Url,
             KnownAs = user.KnownAs,

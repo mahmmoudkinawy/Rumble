@@ -1,5 +1,5 @@
 ﻿namespace API.Interfaces;
 public interface ITokenService
 {
-    string CreateToken(UserEntity user);
+    Task<string> CreateTokenAsync(UserEntity user);
 }

@@ -50,7 +50,7 @@ public static class Seed
 
         var admin = new UserEntity
         {
-            UserName = "Admin"
+            UserName = "admin"
         };
 
         await userManager.CreateAsync(admin, UserConstants.Password);
