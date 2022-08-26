@@ -16,6 +16,12 @@ public static class IdentityServiceExtenstions
             .AddRoleValidator<RoleValidator<RoleEntity>>()
             .AddEntityFrameworkStores<RumbleDbContext>();
 
+        services.AddAuthorization(options =>
+        {
+            options.AddPolicy(UsersConstants.AdminPolicyName, policy => policy.RequireClaim(UsersConstants.Admin));
+            options.AddPolicy(UsersConstants.ModeratePolicyName, policy => policy.RequireClaim(UsersConstants.Admin, UsersConstants.ModeratePolicyName));
+        });
+
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {

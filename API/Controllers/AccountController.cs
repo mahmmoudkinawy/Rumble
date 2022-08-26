@@ -45,7 +45,7 @@ public class AccountController : ControllerBase
 
         if (!result.Succeeded) return BadRequest(result.Errors);
 
-        var roleList = await _userManager.AddToRoleAsync(user, UserConstants.Member);
+        var roleList = await _userManager.AddToRoleAsync(user, UsersConstants.Member);
 
         if (!roleList.Succeeded) return BadRequest(result.Errors);
 

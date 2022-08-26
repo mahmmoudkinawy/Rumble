@@ -10,9 +10,9 @@ public static class Seed
 
         var roles = new List<RoleEntity>
         {
-            new RoleEntity { Name = UserConstants.Moderator },
-            new RoleEntity { Name = UserConstants.Admin },
-            new RoleEntity { Name = UserConstants.Member }
+            new RoleEntity { Name = UsersConstants.Moderator },
+            new RoleEntity { Name = UsersConstants.Admin },
+            new RoleEntity { Name = UsersConstants.Member }
         };
 
         foreach (var role in roles)
@@ -33,8 +33,8 @@ public static class Seed
 
         foreach (var userEntity in userEntityFaker.Generate(15))
         {
-            await userManager.CreateAsync(userEntity, UserConstants.Password);
-            await userManager.AddToRoleAsync(userEntity, UserConstants.Member);
+            await userManager.CreateAsync(userEntity, UsersConstants.Password);
+            await userManager.AddToRoleAsync(userEntity, UsersConstants.Member);
         }
 
         for (int i = 1; i <= 15; i++)
@@ -53,7 +53,7 @@ public static class Seed
             UserName = "admin"
         };
 
-        await userManager.CreateAsync(admin, UserConstants.Password);
-        await userManager.AddToRolesAsync(admin, new[] { UserConstants.Admin, UserConstants.Member });
+        await userManager.CreateAsync(admin, UsersConstants.Password);
+        await userManager.AddToRolesAsync(admin, new[] { UsersConstants.Admin, UsersConstants.Member });
     }
 }
