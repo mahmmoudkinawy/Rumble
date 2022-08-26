@@ -3,6 +3,7 @@ using System;
 using API.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.DbContexts.Migrations
 {
     [DbContext(typeof(RumbleDbContext))]
-    partial class RumbleDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220826133733_MadeCityAndCountryColumnsAcceptNullValues")]
+    partial class MadeCityAndCountryColumnsAcceptNullValues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,6 +163,7 @@ namespace API.DbContexts.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Gender")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Interests")
@@ -170,6 +173,7 @@ namespace API.DbContexts.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("KnownAs")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<DateTime>("LastActive")

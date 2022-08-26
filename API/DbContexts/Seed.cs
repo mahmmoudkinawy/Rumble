@@ -8,6 +8,18 @@ public static class Seed
     {
         if (await userManager.Users.AnyAsync()) return;
 
+        var roles = new List<RoleEntity>
+        {
+            new RoleEntity { Name = UserConstants.Moderator },
+            new RoleEntity { Name = UserConstants.Admin },
+            new RoleEntity { Name = UserConstants.Member }
+        };
+
+        foreach (var role in roles)
+        {
+            await roleManager.CreateAsync(role);
+        }
+
         var userEntityFaker = new Faker<UserEntity>()
            .RuleFor(u => u.UserName, u => u.Internet.UserName().ToLower())
            .RuleFor(u => u.DateOfBirth, u => u.Person.DateOfBirth.ToUniversalTime())
@@ -17,31 +29,31 @@ public static class Seed
            .RuleFor(u => u.Interests, u => u.Lorem.Word())
            .RuleFor(u => u.Introduction, u => u.Lorem.Text())
            .RuleFor(u => u.City, u => u.Address.City())
-           .RuleFor(u => u.Country, u => u.Address.Country())
-           .RuleFor(u => u.PasswordHash,
-                u => userManager.PasswordHasher.HashPassword(null, UserConstants.Password));
+           .RuleFor(u => u.Country, u => u.Address.Country());
 
-        var photoEntityFaker = new Faker<PhotoEntity>()
-            .RuleFor(p => p.Url, p => p.Person.Avatar)
-            .RuleFor(p => p.IsMain, p => true)
-            .RuleFor(p => p.UserEntity, u => userEntityFaker);
-
-        foreach (var photoEntity in userEntityFaker.Generate(15))
+        foreach (var userEntity in userEntityFaker.Generate(15))
         {
+            await userManager.CreateAsync(userEntity, UserConstants.Password);
+            await userManager.AddToRoleAsync(userEntity, UserConstants.Member);
+        }
+
+        for (int i = 1; i <= 15; i++)
+        {
+            var photoEntityFaker = new Faker<PhotoEntity>()
+                .RuleFor(p => p.Url, p => p.Person.Avatar)
+                .RuleFor(p => p.IsMain, p => true)
+                .RuleFor(p => p.UserId, p => i);
+
             context.Photos.Add(photoEntityFaker);
             await context.SaveChangesAsync();
         }
 
-        var roles = new List<RoleEntity>
+        var admin = new UserEntity
         {
-            new RoleEntity { Name="Admin" },
-            new RoleEntity { Name="Moderator" },
-            new RoleEntity { Name="Member" }
+            UserName = "Admin"
         };
 
-        foreach (var role in roles)
-        {
-            await roleManager.CreateAsync(role);
-        }
+        await userManager.CreateAsync(admin, UserConstants.Password);
+        await userManager.AddToRolesAsync(admin, new[] { UserConstants.Admin, UserConstants.Member });
     }
 }
