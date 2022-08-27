@@ -28,7 +28,7 @@ import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.
 import { InputTextComponent } from './forms/input-text/input-text.component';
 import { MemberMessagesComponent } from './pages/member-messages/member-messages.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
-import { AdminDirective } from './directives/admin.directive';
+import HasRoleDirective from './directives/has-role.directive';
 
 @NgModule({
   declarations: [
@@ -49,7 +49,7 @@ import { AdminDirective } from './directives/admin.directive';
     InputTextComponent,
     MemberMessagesComponent,
     AdminPanelComponent,
-    AdminDirective,
+    HasRoleDirective,
   ],
   imports: [
     BrowserModule,

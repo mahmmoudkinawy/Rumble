@@ -5,7 +5,7 @@
             <a routerLink="/members">Matches</a>
             <a routerLink="/lists">Lists</a>
             <a routerLink="/messages">Messages</a>
-            <a routerLink="/admin">Admin</a>
+            <a routerLink="/admin" *appHasRole="['Admin', 'Moderator']">Admin</a>
         </ng-container>
         <a routerLink="/errors">Errors</a>
     </div>
