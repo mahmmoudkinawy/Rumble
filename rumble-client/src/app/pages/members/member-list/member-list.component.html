@@ -32,11 +32,10 @@
 
             <div *ngIf="userParams" style="padding-top: 30px;">
                 <mat-radio-group>
-                    <mat-radio-button name="orderBy" [(ngModel)]="userParams.orderBy" style="padding-right: 15px"
-                        (click)="loadMembers()">
+                    <mat-radio-button style="padding-right: 15px" (click)="loadMembers()">
                         Last
                         Active</mat-radio-button>
-                    <mat-radio-button name="orderBy" [(ngModel)]="userParams.orderBy" (click)="loadMembers()">
+                    <mat-radio-button (click)="loadMembers()">
                         Newest Members
                     </mat-radio-button>
                 </mat-radio-group>

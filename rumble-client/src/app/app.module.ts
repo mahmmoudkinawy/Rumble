@@ -27,6 +27,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.component';
 import { InputTextComponent } from './forms/input-text/input-text.component';
 import { MemberMessagesComponent } from './pages/member-messages/member-messages.component';
+import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MemberMessagesComponent } from './pages/member-messages/member-messages
     PhotoEditorComponent,
     InputTextComponent,
     MemberMessagesComponent,
+    AdminPanelComponent,
   ],
   imports: [
     BrowserModule,

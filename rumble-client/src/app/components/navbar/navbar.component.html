@@ -5,13 +5,14 @@
             <a routerLink="/members">Matches</a>
             <a routerLink="/lists">Lists</a>
             <a routerLink="/messages">Messages</a>
+            <a routerLink="/admin">Admin</a>
         </ng-container>
         <a routerLink="/errors">Errors</a>
     </div>
 
     <div *ngIf="(accountService.currentUser$ | async) && user">
         <ng-container>
-            <img width="50" [src]="user.photoUrl" [alt]="user.username" />
+            <img width="50" [src]="user.photoUrl || './assets/images/user.png'" [alt]="user.username" />
         </ng-container>
         <mat-form-field appearance="fill">
             <mat-label>Welcome {{user.username |titlecase}}</mat-label>
