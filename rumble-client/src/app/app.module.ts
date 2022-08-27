@@ -28,6 +28,7 @@ import { PhotoEditorComponent } from './pages/members/photo-editor/photo-editor.
 import { InputTextComponent } from './forms/input-text/input-text.component';
 import { MemberMessagesComponent } from './pages/member-messages/member-messages.component';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { AdminDirective } from './directives/admin.directive';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
     InputTextComponent,
     MemberMessagesComponent,
     AdminPanelComponent,
+    AdminDirective,
   ],
   imports: [
     BrowserModule,
