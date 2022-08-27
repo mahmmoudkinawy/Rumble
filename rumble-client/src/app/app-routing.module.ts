@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { AuthGuard } from './guards/auth.guard';
 import { PreventUnsavedChangesGuard } from './guards/prevent-unsaved-changes.guard';
+import { AdminGuard } from './guards/admin.guard';
 
 import { HomeComponent } from './pages/home/home.component';
 import { ListsComponent } from './pages/lists/lists.component';
@@ -35,7 +36,11 @@ const routes: Routes = [
       },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
-      { path: 'admin', component: AdminPanelComponent },
+      {
+        path: 'admin',
+        component: AdminPanelComponent,
+        canActivate: [AdminGuard],
+      },
     ],
   },
   { path: 'errors', component: TestErrorsComponent },
