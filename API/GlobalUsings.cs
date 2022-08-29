@@ -31,3 +31,5 @@ global using Microsoft.Extensions.Options;
 global using Microsoft.AspNetCore.Mvc.Filters;
 global using Microsoft.AspNetCore.Identity;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using API.Hubs;
+global using Microsoft.AspNetCore.SignalR;

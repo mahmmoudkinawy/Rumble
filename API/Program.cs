@@ -53,4 +53,6 @@ catch (Exception ex)
     logger.LogError(ex, "An orrer occured while migrations");
 }
 
+app.MapHub<PresenceHub>("hubs/presence");
+
 await app.RunAsync();
