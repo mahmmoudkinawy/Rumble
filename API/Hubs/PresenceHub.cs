@@ -1,4 +1,6 @@
 ﻿namespace API.Hubs;
+
+[Authorize]
 public class PresenceHub : Hub
 {
     public override async Task OnConnectedAsync()
