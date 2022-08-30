@@ -4,6 +4,8 @@ public static class ApplicationServiceExtenstions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services,
         IConfiguration config)
     {
+        services.AddSingleton<PresenceTracker>();
+
         services.AddScoped<ITokenService, TokenService>();
 
         services.AddScoped<IUserRepository, UserRepository>();
