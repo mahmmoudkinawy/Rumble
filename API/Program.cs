@@ -54,5 +54,6 @@ catch (Exception ex)
 }
 
 app.MapHub<PresenceHub>("hubs/presence");
+app.MapHub<MessageHub>("hubs/messages");
 
 await app.RunAsync();
